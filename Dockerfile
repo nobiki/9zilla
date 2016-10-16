@@ -8,8 +8,10 @@ RUN apt-get install -y vim git tig unzip tree sed bash-completion dbus sudo ssh 
 RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog python iftop bmon iptraf nload slurm sl toilet lolcat
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
-RUN chown $username:$username /home/$username
 RUN echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username
+RUN chown $username:$username /home/$username
+RUN sudo -u $username mkdir /var/workspace/
+RUN sudo -u $username ln -s /var/workspace/ /home/$username/workspace
 RUN locale-gen ja_JP.UTF-8
 RUN localedef -f UTF-8 -i ja_JP ja_JP
 ENV LANG ja_JP.UTF-8
