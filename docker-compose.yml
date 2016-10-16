@@ -12,6 +12,10 @@ services:
         networks:
             b0:
                 ipv4_address: 172.18.0.100
+        volumes:
+            - /var/containers/9zilla/var/tmp/:/var/tmp/
+            - /var/containers/9zilla/var/virtualdomains/:/var/virtualdomains/
+            - /var/containers/9zilla/etc/nginx/conf.d/:/etc/nginx/conf.d/
         privileged: true
         command: /sbin/init
 
