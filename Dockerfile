@@ -38,7 +38,7 @@ ADD archives/ngrok /usr/local/bin/
 RUN chmod +x /usr/local/bin/ngrok
 RUN apt-get install -y nginx
 ADD settings/nginx/nginx.conf /etc/nginx/nginx.conf
-ADD settings/nginx/sites-available/example.conf /etc/nginx/sites-available/example.conf
+ADD settings/nginx/conf.d/example.conf /etc/nginx/conf.d/example.conf
 RUN apt-get install -y mariadb-client
 RUN apt-get install -y xvfb
 RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb
