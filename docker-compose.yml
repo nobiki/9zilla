@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+    9zilla:
+        container_name: 9zilla
+        hostname: 9zilla
+        image: nobiki/9zilla:latest
+        ports:
+            -  "80:80"
+            -  "443:443"
+            -  "19022:22"
+        networks:
+            b0:
+                ipv4_address: 172.18.0.100
+        privileged: true
+        command: /sbin/init
+
+networks:
+    b0:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                -  subnet: 172.18.0.0/16
+                   gateway: 172.18.0.1
+

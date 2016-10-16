@@ -1,0 +1,12 @@
+FROM debian:jessie
+MAINTAINER Naoaki Obiki
+
+ARG username="nobiki"
+ARG password="4444"
+
+#include "./include/vanilla.docker"
+#include "./include/nginx.docker"
+#include "./include/mariadb.docker"
+#include "./include/xvfb.docker"
+#include "./include/browser.docker"
+#include "./include/selenium-behat.docker"
