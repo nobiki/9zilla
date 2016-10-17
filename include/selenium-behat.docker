@@ -6,13 +6,6 @@ RUN chmod +x /usr/local/bin/selenium
 RUN mkdir /usr/local/lib/selenium
 ADD archives/chromedriver /usr/local/lib/selenium/
 
-// imagick
-RUN apt-get install -y php5 php5-curl php5-imagick imagemagick
-RUN systemctl disable apache2
-
-// composer
-RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
-
 // behat-mink
 RUN mkdir -p /home/$username/ci/behat/
 ADD settings/behat/composer.json /home/$username/ci/behat/

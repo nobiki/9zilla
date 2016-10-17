@@ -5,6 +5,8 @@ ARG username="nobiki"
 ARG password="4444"
 
 #include "./include/vanilla.docker"
+#include "./include/php.docker"
+#include "./include/python.docker"
 #include "./include/nginx.docker"
 #include "./include/mariadb.docker"
 #include "./include/xvfb.docker"

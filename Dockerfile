@@ -4,8 +4,8 @@ ARG username="nobiki"
 ARG password="4444"
 RUN apt-get update
 RUN apt-get install -y make gcc g++
-RUN apt-get install -y vim vim-nox git tig unzip tree sed bash-completion dbus sudo ssh curl wget expect cron
-RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog python iftop bmon iptraf nload slurm sl toilet lolcat
+RUN apt-get install -y vim git tig unzip tree sed bash-completion dbus sudo ssh curl wget expect cron
+RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog iftop bmon iptraf nload slurm sl toilet lolcat
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
 RUN echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username
@@ -39,6 +39,10 @@ RUN chmod +x /usr/local/src/enhancd/init.sh
 RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
 ADD archives/ngrok /usr/local/bin/
 RUN chmod +x /usr/local/bin/ngrok
+RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-geoip php5-oauth
+RUN systemctl disable apache2
+RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
+RUN apt-get install -y python python-pip vim-nox
 RUN apt-get install -y nginx
 ADD settings/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD settings/nginx/conf.d/example.conf /etc/nginx/conf.d/example.conf
@@ -57,9 +61,6 @@ RUN echo "DISPLAY=:99 java -jar /usr/local/bin/selenium-server-standalone.jar -D
 RUN chmod +x /usr/local/bin/selenium
 RUN mkdir /usr/local/lib/selenium
 ADD archives/chromedriver /usr/local/lib/selenium/
-RUN apt-get install -y php5 php5-curl php5-imagick imagemagick
-RUN systemctl disable apache2
-RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
 RUN mkdir -p /home/$username/ci/behat/
 ADD settings/behat/composer.json /home/$username/ci/behat/
 ADD settings/behat/behat.yml /home/$username/ci/behat/
