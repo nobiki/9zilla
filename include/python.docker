@@ -1,1 +1,5 @@
+// python
 RUN apt-get install -y python python-pip vim-nox
+
+// virtualenv
+RUN pip install virtualenv
