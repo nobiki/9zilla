@@ -4,7 +4,7 @@ ARG username="nobiki"
 ARG password="4444"
 RUN apt-get update
 RUN apt-get install -y make gcc g++
-RUN apt-get install -y vim git tig unzip tree sed bash-completion dbus sudo ssh curl wget expect cron
+RUN apt-get install -y vim vim-nox git tig unzip tree sed bash-completion dbus sudo ssh curl wget expect cron
 RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog python iftop bmon iptraf nload slurm sl toilet lolcat
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
