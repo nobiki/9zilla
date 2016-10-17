@@ -43,6 +43,7 @@ RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5
 RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
 RUN apt-get install -y python python-pip vim-nox
+RUN pip install virtualenv
 RUN apt-get install -y nginx
 ADD settings/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD settings/nginx/conf.d/example.conf /etc/nginx/conf.d/example.conf
@@ -55,6 +56,9 @@ RUN echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/so
 RUN apt-get update
 RUN apt-get install -y google-chrome-stable
 RUN apt-get install -y firefox-esr
+RUN apt-get install -y php5 php5-curl php5-imagick imagemagick
+RUN systemctl disable apache2
+RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
 RUN apt-get install -y default-jdk
 ADD archives/selenium-server-standalone.jar /usr/local/bin/
 RUN echo "DISPLAY=:99 java -jar /usr/local/bin/selenium-server-standalone.jar -Dwebdriver.chrome.driver=/usr/local/lib/selenium/chromedriver" > /usr/local/bin/selenium
