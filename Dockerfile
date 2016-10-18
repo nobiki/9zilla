@@ -4,7 +4,7 @@ ARG username="nobiki"
 ARG password="4444"
 RUN apt-get update
 RUN apt-get install -y make gcc g++
-RUN apt-get install -y vim git tig unzip tree sed bash-completion dbus sudo ssh curl wget expect cron
+RUN apt-get install -y vim git tig unzip tree sed bash-completion dbus sudo ssh openssl curl wget expect cron
 RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog iftop bmon iptraf nload slurm sl toilet lolcat
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
@@ -42,8 +42,11 @@ RUN chmod +x /usr/local/bin/ngrok
 RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-geoip php5-oauth
 RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
-RUN apt-get install -y python python-pip vim-nox
+RUN apt-get install -y vim-nox python python-dev python-pip python-mysqldb
 RUN pip install virtualenv
+RUN pip install virtualenvwrapper
+RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bash_profile
+RUN echo "export WORKON_HOME=~/.virtualenvs" >> ~/.bash_profile
 RUN apt-get install -y nginx
 ADD settings/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD settings/nginx/conf.d/example.conf /etc/nginx/conf.d/example.conf
