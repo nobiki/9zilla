@@ -1,0 +1,3 @@
+// nodejs
+RUN apt-get install -y nodejs nodejs-dev npm
+

@@ -9,7 +9,8 @@ RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog iftop bmo
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
 RUN echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username
-RUN chown $username:$username /home/$username
+RUN mkdir -p /home/$username/ci/
+RUN chown -R $username:$username /home/$username
 RUN mkdir /var/workspace/
 RUN ln -s /var/workspace/ /home/$username/workspace
 RUN chown $username:$username /home/$username/workspace
@@ -47,6 +48,7 @@ RUN pip install virtualenv
 RUN pip install virtualenvwrapper
 RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bash_profile
 RUN echo "export WORKON_HOME=~/.virtualenvs" >> ~/.bash_profile
+RUN apt-get install -y nodejs nodejs-dev npm
 RUN apt-get install -y nginx
 ADD settings/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD settings/nginx/conf.d/example.conf /etc/nginx/conf.d/example.conf
@@ -68,7 +70,9 @@ RUN echo "DISPLAY=:99 java -jar /usr/local/bin/selenium-server-standalone.jar -D
 RUN chmod +x /usr/local/bin/selenium
 RUN mkdir /usr/local/lib/selenium
 ADD archives/chromedriver /usr/local/lib/selenium/
-RUN mkdir -p /home/$username/ci/behat/
-ADD settings/behat/composer.json /home/$username/ci/behat/
-ADD settings/behat/behat.yml /home/$username/ci/behat/
-RUN chown -R $username:$username /home/$username/ci/
+RUN mkdir -p /usr/local/lib/behat/
+ADD settings/behat/composer.json /usr/local/lib/behat/
+ADD settings/behat/behat.yml /usr/local/lib/behat/
+RUN chown -R $username:$username /usr/local/lib/behat/
+RUN ln -s /usr/local/lib/behat/bin/behat /usr/local/bin/behat
+RUN ln -s /usr/local/lib/behat/ /home/$username/ci/behat

@@ -14,7 +14,9 @@ RUN mkdir /usr/local/lib/selenium
 ADD archives/chromedriver /usr/local/lib/selenium/
 
 // behat-mink
-RUN mkdir -p /home/$username/ci/behat/
-ADD settings/behat/composer.json /home/$username/ci/behat/
-ADD settings/behat/behat.yml /home/$username/ci/behat/
-RUN chown -R $username:$username /home/$username/ci/
+RUN mkdir -p /usr/local/lib/behat/
+ADD settings/behat/composer.json /usr/local/lib/behat/
+ADD settings/behat/behat.yml /usr/local/lib/behat/
+RUN chown -R $username:$username /usr/local/lib/behat/
+RUN ln -s /usr/local/lib/behat/bin/behat /usr/local/bin/behat
+RUN ln -s /usr/local/lib/behat/ /home/$username/ci/behat

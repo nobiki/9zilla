@@ -14,9 +14,10 @@ services:
                 ipv4_address: 172.18.0.100
         volumes:
             - /var/containers/9zilla/var/tmp/:/var/tmp/
-            - /var/containers/9zilla/var/workspace/:/var/workspace/
             - /var/containers/9zilla/var/virtualdomains/:/var/virtualdomains/
             - /var/containers/9zilla/etc/nginx/conf.d/:/etc/nginx/conf.d/
+            - /var/containers/9zilla/var/lib/mysql/:/var/lib/mysql/
+            - /var/containers/9zilla/usr/local/lib/behat/features/:/usr/local/lib/behat/features/
         privileged: true
         command: /sbin/init
 
