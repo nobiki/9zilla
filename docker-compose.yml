@@ -16,6 +16,7 @@ services:
             - /var/containers/9zilla/var/tmp/:/var/tmp/
             - /var/containers/9zilla/var/virtualdomains/:/var/virtualdomains/
             - /var/containers/9zilla/etc/nginx/conf.d/:/etc/nginx/conf.d/
+            - /var/containers/9zilla/etc/pki/tls/certs/:/etc/pki/tls/certs/
             - /var/containers/9zilla/var/lib/mysql/:/var/lib/mysql/
             - /var/containers/9zilla/usr/local/lib/behat/features/:/usr/local/lib/behat/features/
         privileged: true
