@@ -1,8 +1,8 @@
 FROM debian:jessie
 MAINTAINER Naoaki Obiki
 
-ARG username="nobiki"
-ARG password="4444"
+ARG username="9zilla"
+ARG password="9zilla"
 
 #include "./include/vanilla.docker"
 #include "./include/php.docker"

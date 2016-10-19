@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Naoaki Obiki
-ARG username="nobiki"
-ARG password="4444"
+ARG username="9zilla"
+ARG password="9zilla"
 RUN apt-get update
 RUN apt-get install -y make gcc g++
 RUN apt-get install -y vim git tig unzip tree sed bash-completion dbus sudo ssh openssl curl wget expect cron
