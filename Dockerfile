@@ -46,8 +46,8 @@ RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/loc
 RUN apt-get install -y vim-nox python python-dev python-pip python-mysqldb
 RUN pip install virtualenv
 RUN pip install virtualenvwrapper
-RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bash_profile
-RUN echo "export WORKON_HOME=~/.virtualenvs" >> ~/.bash_profile
+RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/$username/.bash_profile
+RUN echo "export WORKON_HOME=~/.virtualenvs" >> /home/$username/.bash_profile
 RUN apt-get install -y nodejs nodejs-dev npm
 RUN apt-get install -y nginx
 ADD settings/nginx/nginx.conf /etc/nginx/nginx.conf

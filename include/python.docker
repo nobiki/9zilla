@@ -4,6 +4,6 @@ RUN apt-get install -y vim-nox python python-dev python-pip python-mysqldb
 // virtualenv
 RUN pip install virtualenv
 RUN pip install virtualenvwrapper
-RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bash_profile
-RUN echo "export WORKON_HOME=~/.virtualenvs" >> ~/.bash_profile
+RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/$username/.bash_profile
+RUN echo "export WORKON_HOME=~/.virtualenvs" >> /home/$username/.bash_profile
 
