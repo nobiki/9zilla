@@ -5,7 +5,7 @@ ARG password="9zilla"
 RUN apt-get update
 RUN apt-get install -y make gcc g++
 RUN apt-get install -y vim git tig unzip tree sed bash-completion dbus sudo ssh openssl curl wget expect cron
-RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog iftop bmon iptraf nload slurm sl toilet lolcat
+RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog htop inetutils-traceroute iftop bmon iptraf nload slurm sl toilet lolcat
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
 RUN echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username
