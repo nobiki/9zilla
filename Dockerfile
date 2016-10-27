@@ -19,7 +19,6 @@ RUN localedef -f UTF-8 -i ja_JP ja_JP
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:jp
 ENV LC_ALL ja_JP.UTF-8
-RUN cp -p /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 RUN sudo -u $username mkdir -p /home/$username/.ssh/
 RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
