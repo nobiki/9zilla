@@ -1,0 +1,3 @@
+// nvm
+ADD settings/nvm/nvm_install.sh /home/$username/
+
