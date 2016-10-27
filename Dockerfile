@@ -48,7 +48,10 @@ RUN pip install virtualenv
 RUN pip install virtualenvwrapper
 RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/$username/.bash_profile
 RUN echo "export WORKON_HOME=~/.virtualenvs" >> /home/$username/.bash_profile
-RUN apt-get install -y nodejs nodejs-dev npm
+RUN "(git clone https://github.com/creationix/nvm.git /home/$username/.nvm/;cd /home/$username/.nvm/;git checkout `git describe --abbrev=0 --tags --match 'v[0-9]*' origin`) && . /home/$username/.nvm/nvm.sh"
+RUN echo "export NVM_DIR='/home/$username/.nvm'" >> /home/$username/.bash_profile
+RUN echo "[ -s '$NVM_DIR/nvm.sh' ] && . '$NVM_DIR/nvm.sh'" >> /home/$username/.bash_profile
+RUN nvm install node
 RUN apt-get install -y nginx
 ADD settings/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD settings/nginx/conf.d/example.conf /etc/nginx/conf.d/example.conf
