@@ -1,5 +1,5 @@
 // nodejs
-RUN "(git clone https://github.com/creationix/nvm.git /home/$username/.nvm/;cd /home/$username/.nvm/;git checkout `git describe --abbrev=0 --tags --match 'v[0-9]*' origin`) && . /home/$username/.nvm/nvm.sh"
+RUN "(git clone https://github.com/creationix/nvm.git /home/$username/.nvm/;cd /home/$username/.nvm/;git checkout `git describe --abbrev=0 --tags --match 'v[0-9]*' origin`)" && ". /home/$username/.nvm/nvm.sh"
 RUN echo "export NVM_DIR='/home/$username/.nvm'" >> /home/$username/.bash_profile
 RUN echo "[ -s '$NVM_DIR/nvm.sh' ] && . '$NVM_DIR/nvm.sh'" >> /home/$username/.bash_profile
-RUN nvm install node
+RUN sudo -u $username nvm install node
