@@ -13,7 +13,7 @@ services:
             b0:
                 ipv4_address: 172.18.0.100
         environment:
-            - TZ=Asia/Tokyo
+            - "TZ=Asia/Tokyo"
         volumes:
             - /var/containers/9zilla/etc/nginx/conf.d/:/etc/nginx/conf.d/
             - /var/containers/9zilla/etc/pki/tls/certs/:/etc/pki/tls/certs/
