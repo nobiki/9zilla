@@ -1,3 +1,3 @@
 // nvm
 ADD settings/nvm/nvm_install.sh /home/$username/
-RUN chmod +x /home/$username/nvm_install.sh
+RUN chmod +wx /home/$username/nvm_install.sh
