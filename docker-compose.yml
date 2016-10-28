@@ -19,6 +19,18 @@ services:
             - /var/containers/9zilla/etc/pki/tls/certs/:/etc/pki/tls/certs/
             - /var/containers/9zilla/var/lib/mysql/:/var/lib/mysql/
             - /var/containers/9zilla/usr/local/lib/behat/features/:/usr/local/lib/behat/features/
+        # example: Docker for Mac
+        # volumes:
+        #     - /private/var/containers/9zilla/etc/nginx/conf.d/:/etc/nginx/conf.d/
+        #     - /private/var/containers/9zilla/etc/pki/tls/certs/:/etc/pki/tls/certs/
+        #     - /private/var/containers/9zilla/var/lib/mysql/:/var/lib/mysql/
+        #     - /private/var/containers/9zilla/usr/local/lib/behat/features/:/usr/local/lib/behat/features/
+        # example: Docker fro Windows
+        # volumes:
+        #     - C:\containers\9zilla\etc\nginx\conf.d\:/etc/nginx/conf.d/
+        #     - C:\containers\9zilla\etc\pki\tls\certs\:/etc/pki/tls/certs/
+        #     - C:\containers\9zilla\var\lib\mysql\:/var/lib/mysql/
+        #     - C:\containers\9zilla\usr\local\lib\behat\features\:/usr/local/lib/behat/features/
         privileged: true
         command: /sbin/init
 
