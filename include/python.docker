@@ -1,5 +1,5 @@
 // python
-RUN apt-get install -y vim-nox python python-dev python-pip python-mysqldb
+RUN apt-get install -y vim-nox python python-dev python-pip python-mysqldb python-tk
 
 // virtualenv
 RUN pip install virtualenv

@@ -43,7 +43,7 @@ RUN chmod +x /usr/local/bin/ngrok
 RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-geoip php5-oauth
 RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
-RUN apt-get install -y vim-nox python python-dev python-pip python-mysqldb
+RUN apt-get install -y vim-nox python python-dev python-pip python-mysqldb python-tk
 RUN pip install virtualenv
 RUN pip install virtualenvwrapper
 RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/$username/.bash_profile
