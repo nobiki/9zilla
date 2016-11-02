@@ -19,20 +19,54 @@ services:
             - /var/containers/9zilla/etc/pki/tls/certs/:/etc/pki/tls/certs/
             - /var/containers/9zilla/var/lib/mysql/:/var/lib/mysql/
             - /var/containers/9zilla/usr/local/lib/behat/features/:/usr/local/lib/behat/features/
-        # example: Docker for Mac
-        # volumes:
+        ### example - Docker for Mac
         #     - /private/var/containers/9zilla/etc/nginx/conf.d/:/etc/nginx/conf.d/
         #     - /private/var/containers/9zilla/etc/pki/tls/certs/:/etc/pki/tls/certs/
         #     - /private/var/containers/9zilla/var/lib/mysql/:/var/lib/mysql/
         #     - /private/var/containers/9zilla/usr/local/lib/behat/features/:/usr/local/lib/behat/features/
-        # example: Docker fro Windows
-        # volumes:
+        ### example - Docker for Windows
         #     - C:\containers\9zilla\etc\nginx\conf.d\:/etc/nginx/conf.d/
         #     - C:\containers\9zilla\etc\pki\tls\certs\:/etc/pki/tls/certs/
         #     - C:\containers\9zilla\var\lib\mysql\:/var/lib/mysql/
         #     - C:\containers\9zilla\usr\local\lib\behat\features\:/usr/local/lib/behat/features/
+
         privileged: true
         command: /sbin/init
+
+    gandamu:
+        container_name: gandamu
+        hostname: gandamu
+        image: busybox
+        networks:
+            b0:
+                ipv4_address: 172.18.0.99
+        environment:
+            - "TZ=Asia/Tokyo"
+        volumes:
+            - /var/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+        ### example - Docker for Mac
+        #     - /private/var/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+        ### example - Docker for Windows
+        #     - C:\containers\gandamu\var\lib\mysql\:/var/lib/mysql/
+
+    my-gandamu:
+        container_name: my-gandamu
+        hostname: my-gandamu
+        image: mysql:5.6
+        networks:
+            b0:
+                ipv4_address: 172.18.0.50
+        environment:
+            - "TZ=Asia/Tokyo"
+            - "MYSQL_ROOT_PASSWORD=root"
+        volumes:
+            - /var/containers/my-gandamu/etc/mysql/conf.d/:/etc/mysql/conf.d/
+        ### example - Docker for Mac
+        #     - /private/var/containers/my-gandamu/etc/mysql/conf.d/:/etc/mysql/conf.d/
+        ### example - Docker for Windows
+        #     - C:\containers\my-gandamu\etc\mysql\conf.d\:/etc/mysql/conf.d/
+        volumes_from:
+            - gandamu
 
 networks:
     b0:
