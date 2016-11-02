@@ -17,6 +17,7 @@ $ docker-compose up -d
 ARG username="9zilla"
 ARG password="9zilla"
 ```
+
 * Install `behat`
 
 ``` sh
@@ -24,13 +25,13 @@ $ cd ~/ci/behat/
 $ composer.phar install
 ```
 
-* run `Xvfb`
+* run `Xvfb` on `DISPLAY=:99`
 
 ``` sh
 $ selenium-xvfb
 ```
 
-* run `selenium` With chromedriver
+* run `selenium` With chromedriver on `DISPLAY=:99`
 
 ``` sh
 $ selenium &
