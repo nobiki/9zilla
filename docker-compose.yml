@@ -60,14 +60,14 @@ services:
             - "TZ=Asia/Tokyo"
             - "MYSQL_ROOT_PASSWORD=root"
         volumes:
-            - /var/containers/my-gandamu/etc/mysql/conf.d/:/etc/mysql/conf.d/
             - /var/containers/my-gandamu/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
+            - /var/containers/my-gandamu/etc/mysql/conf.d/:/etc/mysql/conf.d/
         ### example - Docker for Mac
-        #     - /private/var/containers/my-gandamu/etc/mysql/conf.d/:/etc/mysql/conf.d/
         #     - /private/var/containers/my-gandamu/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
+        #     - /private/var/containers/my-gandamu/etc/mysql/conf.d/:/etc/mysql/conf.d/
         ### example - Docker for Windows
-        #     - C:\containers\my-gandamu\etc\mysql\conf.d\:/etc/mysql/conf.d/
         #     - C:\containers\my-gandamu\docker-entrypoint-initdb.d\:/docker-entrypoint-initdb.d
+        #     - C:\containers\my-gandamu\etc\mysql\conf.d\:/etc/mysql/conf.d/
         volumes_from:
             - gandamu
 

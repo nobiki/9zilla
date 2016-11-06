@@ -36,3 +36,9 @@ $ selenium-xvfb
 ``` sh
 $ selenium &
 ```
+
+* Initialization of MySQL
+
+``` sh
+$ sudo cp -r 9zilla/settings/my-gandamu /var/containsers/
+```
