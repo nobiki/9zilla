@@ -53,11 +53,14 @@ RUN chmod +x /usr/local/bin/ngrok
 RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-oauth
 RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
-RUN apt-get install -y vim-nox python python-dev python-pip python-mysqldb python-tk
-RUN pip install virtualenv
-RUN pip install virtualenvwrapper
-RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/$username/.bash_profile
-RUN echo "export WORKON_HOME=~/.virtualenvs" >> /home/$username/.bash_profile
+RUN apt-get install -y vim-nox libbz2-dev libreadline-dev libsqlite3-dev libssl-dev
+RUN git clone "https://github.com/yyuu/pyenv.git" /home/$username/.pyenv
+RUN echo 'export PYENV_ROOT=$HOME/.pyenv' >> /home/$username/.bash_profile
+RUN echo 'export PATH=$PYENV_ROOT/bin:$PATH' >> /home/$username/.bash_profile
+RUN echo 'eval "$(pyenv init -)"' >> /home/$username/.bash_profile
+RUN git clone "https://github.com/yyuu/pyenv-virtualenv.git" /home/$username/.pyenv/plugins/pyenv-virtualenv
+RUN echo 'eval "$(pyenv virtualenv-init -)"' >> /home/$username/.bash_profile
+RUN chown -R $username:$username /home/$username/.pyenv/
 ADD settings/nvm/nvm_install.sh /home/$username/
 RUN chmod +wx /home/$username/nvm_install.sh
 RUN apt-get install -y nginx
