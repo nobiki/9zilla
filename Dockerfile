@@ -29,7 +29,7 @@ RUN echo "server ntp0.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
 RUN echo "server ntp1.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
 RUN echo "server ntp2.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
 RUN echo "allow 172.18/12" >> /etc/chrony/chrony.conf
-RUN systemctl enable chronyd
+RUN systemctl enable chrony
 RUN sudo -u $username mkdir -p /home/$username/.ssh/
 RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
