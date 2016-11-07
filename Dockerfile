@@ -3,8 +3,14 @@ MAINTAINER Naoaki Obiki
 ARG username="9zilla"
 ARG password="9zilla"
 RUN apt-get update
+RUN apt-get install -y ssh
+RUN sudo -u $username mkdir -p /home/$username/.ssh/
+RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config
+RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
+RUN sed -ri "s/^#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config
+RUN systemctl enable ssh
 RUN apt-get install -y make gcc g++
-RUN apt-get install -y vim git tig unzip tree sed bash-completion dbus sudo ssh openssl curl wget expect cron
+RUN apt-get install -y vim git tig unzip tree sed bash-completion dbus sudo openssl curl wget expect cron
 RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog htop inetutils-traceroute iftop bmon iptraf nload slurm sl toilet lolcat
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
@@ -30,16 +36,12 @@ RUN echo "server ntp1.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
 RUN echo "server ntp2.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
 RUN echo "allow 172.18/12" >> /etc/chrony/chrony.conf
 RUN systemctl enable chrony
-RUN sudo -u $username mkdir -p /home/$username/.ssh/
-RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config
-RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
-RUN sed -ri "s/^#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config
-RUN systemctl enable ssh
 RUN sudo -u $username mkdir -p /home/$username/gitwork/bitbucket/dotfiles/
 RUN sudo -u $username git clone "https://nobiki@bitbucket.org/nobiki/dotfiles.git" /home/$username/gitwork/bitbucket/dotfiles/
 RUN sudo -u $username cp /etc/bash.bashrc /home/$username/.bashrc
 RUN sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.bash_profile /home/$username/.bash_profile
 RUN sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.gitconfig /home/$username/.gitconfig
+RUN sudo -u $username mkdir -p /home/$username/.ssh/
 RUN sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.ssh/config /home/$username/.ssh/config
 RUN curl -o /usr/local/bin/jq "http://stedolan.github.io/jq/download/linux64/jq"
 RUN chmod +x /usr/local/bin/jq

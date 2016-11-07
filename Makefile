@@ -2,4 +2,4 @@ Dockerfile: Dockerfile.in ./include/*.docker
 	cpp -P -o Dockerfile Dockerfile.in
 
 build: Dockerfile
-	sudo docker build --no-cache -t RepositoryName .
+	docker build --no-cache -t 9zilla:latest .
