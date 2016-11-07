@@ -23,6 +23,17 @@ ENV LC_ALL ja_JP.UTF-8
 // timezone
 RUN cp -p /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
+// chrony
+RUN sed -ri "s/^server 0.debian.pool.ntp.org/#server 0.debian.pool.ntp.org/" /etc/chrony/chrony.conf
+RUN sed -ri "s/^server 1.debian.pool.ntp.org/#server 1.debian.pool.ntp.org/" /etc/chrony/chrony.conf
+RUN sed -ri "s/^server 2.debian.pool.ntp.org/#server 2.debian.pool.ntp.org/" /etc/chrony/chrony.conf
+RUN sed -ri "s/^server 3.debian.pool.ntp.org/#server 3.debian.pool.ntp.org/" /etc/chrony/chrony.conf
+RUN echo "server ntp0.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
+RUN echo "server ntp1.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
+RUN echo "server ntp2.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
+RUN echo "allow 172.18/12" >> /etc/chrony/chrony.conf
+RUN systemctl enable chronyd
+
 // ssh
 RUN sudo -u $username mkdir -p /home/$username/.ssh/
 RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config

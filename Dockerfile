@@ -20,6 +20,15 @@ ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:jp
 ENV LC_ALL ja_JP.UTF-8
 RUN cp -p /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+RUN sed -ri "s/^server 0.debian.pool.ntp.org/#server 0.debian.pool.ntp.org/" /etc/chrony/chrony.conf
+RUN sed -ri "s/^server 1.debian.pool.ntp.org/#server 1.debian.pool.ntp.org/" /etc/chrony/chrony.conf
+RUN sed -ri "s/^server 2.debian.pool.ntp.org/#server 2.debian.pool.ntp.org/" /etc/chrony/chrony.conf
+RUN sed -ri "s/^server 3.debian.pool.ntp.org/#server 3.debian.pool.ntp.org/" /etc/chrony/chrony.conf
+RUN echo "server ntp0.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
+RUN echo "server ntp1.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
+RUN echo "server ntp2.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
+RUN echo "allow 172.18/12" >> /etc/chrony/chrony.conf
+RUN systemctl enable chronyd
 RUN sudo -u $username mkdir -p /home/$username/.ssh/
 RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
@@ -40,7 +49,7 @@ RUN chmod +x /usr/local/src/enhancd/init.sh
 RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
 ADD archives/ngrok /usr/local/bin/
 RUN chmod +x /usr/local/bin/ngrok
-RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-geoip php5-oauth
+RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-oauth
 RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
 RUN apt-get install -y vim-nox python python-dev python-pip python-mysqldb python-tk
