@@ -20,6 +20,7 @@ ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:jp
 ENV LC_ALL ja_JP.UTF-8
 RUN cp -p /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+RUN apt-get install -y chrony
 RUN sed -ri "s/^server 0.debian.pool.ntp.org/#server 0.debian.pool.ntp.org/" /etc/chrony/chrony.conf
 RUN sed -ri "s/^server 1.debian.pool.ntp.org/#server 1.debian.pool.ntp.org/" /etc/chrony/chrony.conf
 RUN sed -ri "s/^server 2.debian.pool.ntp.org/#server 2.debian.pool.ntp.org/" /etc/chrony/chrony.conf
