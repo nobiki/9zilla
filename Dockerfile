@@ -4,7 +4,6 @@ ARG username="9zilla"
 ARG password="9zilla"
 RUN apt-get update
 RUN apt-get install -y ssh
-RUN sudo -u $username mkdir -p /home/$username/.ssh/
 RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config
