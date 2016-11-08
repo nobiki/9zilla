@@ -43,12 +43,15 @@ services:
         environment:
             - "TZ=Asia/Tokyo"
         volumes:
+            - /var/containers/9zilla-lamp/var/virtualdomains/:/var/virtualdomains/
             - /var/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
             - /var/containers/9zilla-lamp/etc/pki/tls/certs/:/etc/pki/tls/certs/
         ### example - Docker for Mac
+        #   - /private/var/containers/9zilla-lamp/var/virtualdomains/:/var/virtualdomains/
         #   - /private/var/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
         #   - /private/var/containers/9zilla-lamp/etc/pki/tls/certs/:/etc/pki/tls/certs/
         ### example - Docker for Windows
+        #   - C:\containers\var\containers\9zilla-lamp\var\virtualdomains\:/var/virtualdomains/
         #   - C:\containers\var\containers\9zilla-lamp\etc\apache2\sites-available\:/etc/apache2/sites-available/
         #   - C:\containers\var\containers\9zilla-lamp\etc\pki\tls\certs\:/etc/pki/tls/certs/
 
