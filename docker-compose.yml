@@ -33,6 +33,28 @@ services:
         privileged: true
         command: /sbin/init
 
+    9zilla-lamp:
+        container_name: 9zilla-lamp
+        hostname: 9zilla-lamp
+        image: nobiki/9zilla-lamp:latest
+        networks:
+            b0:
+                ipv4_address: 172.18.0.20
+        environment:
+            - "TZ=Asia/Tokyo"
+        volumes:
+            - /var/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
+            - /var/containers/9zilla-lamp/etc/pki/tls/certs/:/etc/pki/tls/certs/
+        ### example - Docker for Mac
+        #   - /private/var/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
+        #   - /private/var/containers/9zilla-lamp/etc/pki/tls/certs/:/etc/pki/tls/certs/
+        ### example - Docker for Windows
+        #   - C:\containers\var\containers\9zilla-lamp\etc\apache2\sites-available\:/etc/apache2/sites-available/
+        #   - C:\containers\var\containers\9zilla-lamp\etc\pki\tls\certs\:/etc/pki/tls/certs/
+
+        privileged: true
+        command: /sbin/init
+
     gandamu:
         container_name: gandamu
         hostname: gandamu
