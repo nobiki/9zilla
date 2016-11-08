@@ -19,7 +19,7 @@ RUN chmod 755 /var/log/apache2/
 RUN chmod 755 /var/log/apache2/vhost/
 
 // sample setting
-ADD settings/apache2/example.conf
+ADD settings/apache2/example.conf /etc/apache2/sites-available/
 RUN a2ensite example
 
 // enable apache2
