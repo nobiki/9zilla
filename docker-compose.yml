@@ -51,9 +51,9 @@ services:
         #   - /private/var/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
         #   - /private/var/containers/9zilla-lamp/etc/pki/tls/certs/:/etc/pki/tls/certs/
         ### example - Docker for Windows
-        #   - C:\containers\var\containers\9zilla-lamp\var\virtualdomains\:/var/virtualdomains/
-        #   - C:\containers\var\containers\9zilla-lamp\etc\apache2\sites-available\:/etc/apache2/sites-available/
-        #   - C:\containers\var\containers\9zilla-lamp\etc\pki\tls\certs\:/etc/pki/tls/certs/
+        #   - C:\containers\9zilla-lamp\var\virtualdomains\:/var/virtualdomains/
+        #   - C:\containers\9zilla-lamp\etc\apache2\sites-available\:/etc/apache2/sites-available/
+        #   - C:\containers\9zilla-lamp\etc\pki\tls\certs\:/etc/pki/tls/certs/
 
         privileged: true
         command: /sbin/init
