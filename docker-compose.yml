@@ -16,44 +16,18 @@ services:
             - "TZ=Asia/Tokyo"
         volumes:
             - /var/containers/9zilla/etc/nginx/conf.d/:/etc/nginx/conf.d/
-            - /var/containers/9zilla/etc/pki/tls/certs/:/etc/pki/tls/certs/
-            - /var/containers/9zilla/var/lib/mysql/:/var/lib/mysql/
             - /var/containers/9zilla/usr/local/lib/behat/features/:/usr/local/lib/behat/features/
         ### example - Docker for Mac
         #     - /private/var/containers/9zilla/etc/nginx/conf.d/:/etc/nginx/conf.d/
-        #     - /private/var/containers/9zilla/etc/pki/tls/certs/:/etc/pki/tls/certs/
-        #     - /private/var/containers/9zilla/var/lib/mysql/:/var/lib/mysql/
         #     - /private/var/containers/9zilla/usr/local/lib/behat/features/:/usr/local/lib/behat/features/
         ### example - Docker for Windows
         #     - C:\containers\9zilla\etc\nginx\conf.d\:/etc/nginx/conf.d/
-        #     - C:\containers\9zilla\etc\pki\tls\certs\:/etc/pki/tls/certs/
-        #     - C:\containers\9zilla\var\lib\mysql\:/var/lib/mysql/
         #     - C:\containers\9zilla\usr\local\lib\behat\features\:/usr/local/lib/behat/features/
-
-        privileged: true
-        command: /sbin/init
-
-    9zilla-lamp:
-        container_name: 9zilla-lamp
-        hostname: 9zilla-lamp
-        image: nobiki/9zilla-lamp:latest
-        networks:
-            b0:
-                ipv4_address: 172.18.0.20
-        environment:
-            - "TZ=Asia/Tokyo"
-        volumes:
-            - /var/containers/9zilla-lamp/var/virtualdomains/:/var/virtualdomains/
-            - /var/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
-            - /var/containers/9zilla-lamp/etc/pki/tls/certs/:/etc/pki/tls/certs/
-        ### example - Docker for Mac
-        #   - /private/var/containers/9zilla-lamp/var/virtualdomains/:/var/virtualdomains/
-        #   - /private/var/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
-        #   - /private/var/containers/9zilla-lamp/etc/pki/tls/certs/:/etc/pki/tls/certs/
-        ### example - Docker for Windows
-        #   - C:\containers\9zilla-lamp\var\virtualdomains\:/var/virtualdomains/
-        #   - C:\containers\9zilla-lamp\etc\apache2\sites-available\:/etc/apache2/sites-available/
-        #   - C:\containers\9zilla-lamp\etc\pki\tls\certs\:/etc/pki/tls/certs/
+        ### example - boot2docker
+        #     - /var/lib/boot2docker/containers/9zilla/etc/nginx/conf.d/:/etc/nginx/conf.d/
+        #     - /var/lib/boot2docker/containers/9zilla/usr/local/lib/behat/features/:/usr/local/lib/behat/features/
+        volumes_from:
+            - gandamu
 
         privileged: true
         command: /sbin/init
@@ -68,11 +42,44 @@ services:
         environment:
             - "TZ=Asia/Tokyo"
         volumes:
+            - /var/containers/gandamu/virtualdomains/:/var/virtualdomains/
             - /var/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+            - /var/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
         ### example - Docker for Mac
+        #     - /private/var/containers/gandamu/virtualdomains/:/var/virtualdomains/
         #     - /private/var/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+        #     - /private/var/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
         ### example - Docker for Windows
+        #     - C:\containers\gandamu\virtualdomains\:/var/virtualdomains/
         #     - C:\containers\gandamu\var\lib\mysql\:/var/lib/mysql/
+        #     - C:\containers\gandamu\etc\pki\tls\certs\:/etc/pki/tls/certs/
+        ### example - boot2docker
+        #     - /var/lib/boot2docker/containers/gandamu/virtualdomains/:/var/virtualdomains/
+        #     - /var/lib/boot2docker/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+        #     - /var/lib/boot2docker/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
+
+    9zilla-lamp:
+        container_name: 9zilla-lamp
+        hostname: 9zilla-lamp
+        image: nobiki/9zilla-lamp:latest
+        networks:
+            b0:
+                ipv4_address: 172.18.0.20
+        environment:
+            - "TZ=Asia/Tokyo"
+        volumes:
+            - /var/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
+        ### example - Docker for Mac
+        #   - /private/var/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
+        ### example - Docker for Windows
+        #   - C:\containers\9zilla-lamp\etc\apache2\sites-available\:/etc/apache2/sites-available/
+        ### example - boot2docker
+        #   - /var/lib/boot2docker/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
+        volumes_from:
+            - gandamu
+
+        privileged: true
+        command: /sbin/init
 
     my-gandamu:
         container_name: my-gandamu
@@ -93,6 +100,9 @@ services:
         ### example - Docker for Windows
         #     - C:\containers\my-gandamu\docker-entrypoint-initdb.d\:/docker-entrypoint-initdb.d
         #     - C:\containers\my-gandamu\etc\mysql\conf.d\:/etc/mysql/conf.d/
+        ### example - boot2docker
+        #     - /var/lib/boot2docker/containers/my-gandamu/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
+        #     - /var/lib/boot2docker/containers/my-gandamu/etc/mysql/conf.d/:/etc/mysql/conf.d/
         volumes_from:
             - gandamu
 
