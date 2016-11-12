@@ -1,6 +1,7 @@
 version: "2"
 
 services:
+    # Debian Workspace
     9zilla:
         container_name: 9zilla
         hostname: 9zilla
@@ -32,6 +33,7 @@ services:
         privileged: true
         command: /sbin/init
 
+    # Data Volume Container
     gandamu:
         container_name: gandamu
         hostname: gandamu
@@ -44,20 +46,42 @@ services:
         volumes:
             - /var/containers/gandamu/virtualdomains/:/var/virtualdomains/
             - /var/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+            - /var/containers/gandamu/var/jenkins_home/:/var/jenkins_home/
             - /var/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
         ### example - Docker for Mac
         #     - /private/var/containers/gandamu/virtualdomains/:/var/virtualdomains/
         #     - /private/var/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+        #     - /private/var/containers/gandamu/var/jenkins_home/:/var/jenkins_home/
         #     - /private/var/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
         ### example - Docker for Windows
         #     - C:\containers\gandamu\virtualdomains\:/var/virtualdomains/
         #     - C:\containers\gandamu\var\lib\mysql\:/var/lib/mysql/
+        #     - C:\containers\gandamu\var\jenkins_home\:/var/jenkins_home/
         #     - C:\containers\gandamu\etc\pki\tls\certs\:/etc/pki/tls/certs/
         ### example - boot2docker
         #     - /var/lib/boot2docker/containers/gandamu/virtualdomains/:/var/virtualdomains/
         #     - /var/lib/boot2docker/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+        #     - /var/containers/gandamu/var/jenkins_home/:/var/jenkins_home/
         #     - /var/lib/boot2docker/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
 
+    # CI Server(master)
+    ci-gandamu:
+        container_name: ci-gandamu
+        hostname: ci-gandamu
+        image: jenkins:2.19.2
+        ports:
+            -  "19088:8080"
+            -  "19050:50000"
+        networks:
+            b0:
+                ipv4_address: 172.18.0.70
+        environment:
+            - "TZ=Asia/Tokyo"
+            - "JAVA_OPTS=-Dhudson.footerURL=http://7me.oji.0j0.jp"
+        volumes_from:
+            - gandamu
+
+    # Web Server
     9zilla-lamp:
         container_name: 9zilla-lamp
         hostname: 9zilla-lamp
@@ -81,6 +105,7 @@ services:
         privileged: true
         command: /sbin/init
 
+    # DB Server
     my-gandamu:
         container_name: my-gandamu
         hostname: my-gandamu
