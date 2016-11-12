@@ -61,7 +61,7 @@ services:
         ### example - boot2docker
         #     - /var/lib/boot2docker/containers/gandamu/virtualdomains/:/var/virtualdomains/
         #     - /var/lib/boot2docker/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
-        #     - /var/containers/gandamu/var/jenkins_home/:/var/jenkins_home/
+        #     - /var/lib/boot2docker/containers/gandamu/var/jenkins_home/:/var/jenkins_home/
         #     - /var/lib/boot2docker/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
 
     # CI Server(master)
