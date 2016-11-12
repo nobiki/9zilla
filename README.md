@@ -1,5 +1,5 @@
 # 9zilla
-Debian Workspace With PHP, Python, NodeJS, Nginx, Selenium, Behat, Xvfb
+Debian Workspace - PHP, Python, NodeJS, Nginx, Selenium, Behat, Xvfb
 
 #### Caution
 this container is development use only. do not use in production environment.
@@ -40,5 +40,5 @@ $ selenium &
 * Initialization of MySQL settings.
 
 ``` sh
-$ sudo cp -r 9zilla/settings/my-gandamu /var/containsers/
+$ sudo cp -r 9zilla/settings/my-gandamu /var/containers/
 ```
