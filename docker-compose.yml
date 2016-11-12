@@ -77,7 +77,10 @@ services:
                 ipv4_address: 172.18.0.70
         environment:
             - "TZ=Asia/Tokyo"
-            - "JAVA_OPTS=-Dhudson.footerURL=http://7me.oji.0j0.jp"
+        #   - "JAVA_OPTS=-Dhudson.footerURL=http://example.com"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /usr/local/bin/docker:/usr/bin/docker
         volumes_from:
             - gandamu
 
