@@ -11,3 +11,6 @@ RUN apt-get update
 #include "./include/apache2.docker"
 #include "./include/nvm.docker"
 #include "./include/mariadb-client.docker"
+#include "./include/xvfb.docker"
+#include "./include/browser.docker"
+#include "./include/selenium-behat.docker"
