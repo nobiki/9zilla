@@ -67,8 +67,7 @@ RUN apt-get install -y vim-nox libbz2-dev libreadline-dev libsqlite3-dev libssl-
 RUN anyenv install pyenv
 RUN git clone "https://github.com/yyuu/pyenv-virtualenv" $ANYENV_ENV/pyenv/plugins/pyenv-virtualenv
 RUN chown -R $username:$username $ANYENV_HOME
-ADD settings/nvm/nvm_install.sh /home/$username/
-RUN chmod +wx /home/$username/nvm_install.sh
+RUN anyenv install ndenv
 RUN apt-get install -y nginx
 ADD settings/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD settings/nginx/conf.d/example.conf /etc/nginx/conf.d/example.conf

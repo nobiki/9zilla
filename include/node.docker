@@ -1,0 +1,6 @@
+//// nvm
+//ADD settings/nvm/nvm_install.sh /home/$username/
+//RUN chmod +wx /home/$username/nvm_install.sh
+
+// ndenv
+RUN anyenv install ndenv
