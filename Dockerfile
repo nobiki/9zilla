@@ -68,6 +68,7 @@ RUN anyenv install pyenv
 RUN git clone "https://github.com/yyuu/pyenv-virtualenv" $ANYENV_ENV/pyenv/plugins/pyenv-virtualenv
 RUN chown -R $username:$username $ANYENV_HOME
 RUN anyenv install ndenv
+RUN chown -R $username:$username $ANYENV_HOME
 RUN apt-get install -y nginx
 ADD settings/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD settings/nginx/conf.d/example.conf /etc/nginx/conf.d/example.conf

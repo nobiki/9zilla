@@ -4,3 +4,4 @@
 
 // ndenv
 RUN anyenv install ndenv
+RUN chown -R $username:$username $ANYENV_HOME

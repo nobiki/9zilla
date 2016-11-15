@@ -26,4 +26,5 @@ RUN anyenv install pyenv
 
 // pyenv-virtualenv(anyenv)
 RUN git clone "https://github.com/yyuu/pyenv-virtualenv" $ANYENV_ENV/pyenv/plugins/pyenv-virtualenv
+
 RUN chown -R $username:$username $ANYENV_HOME
