@@ -6,4 +6,5 @@ RUN systemctl disable apache2
 
 // composer
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
+RUN chown $username:$username /home/$username/.composer
 

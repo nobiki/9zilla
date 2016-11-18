@@ -63,6 +63,7 @@ RUN chmod +x /usr/local/bin/ngrok
 RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-oauth
 RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
+RUN chown $username:$username /home/$username/.composer
 RUN apt-get install -y vim-nox libbz2-dev libreadline-dev libsqlite3-dev libssl-dev
 RUN anyenv install pyenv
 RUN git clone "https://github.com/yyuu/pyenv-virtualenv" $ANYENV_ENV/pyenv/plugins/pyenv-virtualenv
@@ -84,6 +85,7 @@ RUN apt-get install -y firefox-esr
 RUN apt-get install -y php5 php5-curl php5-imagick imagemagick
 RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
+RUN chown $username:$username /home/$username/.composer
 RUN apt-get install -y default-jdk
 ADD archives/selenium-server-standalone.jar /usr/local/bin/
 RUN echo "DISPLAY=:99 java -jar /usr/local/bin/selenium-server-standalone.jar -Dwebdriver.chrome.driver=/usr/local/lib/selenium/chromedriver" > /usr/local/bin/selenium
