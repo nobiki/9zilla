@@ -64,7 +64,7 @@ RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5
 RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
 RUN chown $username:$username /home/$username/.composer
-RUN apt-get install -y vim-nox libbz2-dev libreadline-dev libsqlite3-dev libssl-dev
+RUN apt-get install -y vim-nox pkg-config libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libfreetype6-dev
 RUN anyenv install pyenv
 RUN git clone "https://github.com/yyuu/pyenv-virtualenv" $ANYENV_ENV/pyenv/plugins/pyenv-virtualenv
 RUN chown -R $username:$username $ANYENV_HOME
