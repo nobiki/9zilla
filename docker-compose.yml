@@ -46,43 +46,27 @@ services:
         volumes:
             - /var/containers/gandamu/virtualdomains/:/var/virtualdomains/
             - /var/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+            - /var/containers/gandamu/data/:/data/
             - /var/containers/gandamu/var/jenkins_home/:/var/jenkins_home/
             - /var/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
         ### example - Docker for Mac
         #     - /private/var/containers/gandamu/virtualdomains/:/var/virtualdomains/
         #     - /private/var/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+        #     - /private/var/containers/gandamu/data/:/data/
         #     - /private/var/containers/gandamu/var/jenkins_home/:/var/jenkins_home/
         #     - /private/var/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
         ### example - Docker for Windows
         #     - C:\containers\gandamu\virtualdomains\:/var/virtualdomains/
         #     - C:\containers\gandamu\var\lib\mysql\:/var/lib/mysql/
+        #     - C:\containers\gandamu\data\:/data/
         #     - C:\containers\gandamu\var\jenkins_home\:/var/jenkins_home/
         #     - C:\containers\gandamu\etc\pki\tls\certs\:/etc/pki/tls/certs/
         ### example - boot2docker
         #     - /var/lib/boot2docker/containers/gandamu/virtualdomains/:/var/virtualdomains/
         #     - /var/lib/boot2docker/containers/gandamu/var/lib/mysql/:/var/lib/mysql/
+        #     - /var/lib/boot2docker/containers/gandamu/data/:/data/
         #     - /var/lib/boot2docker/containers/gandamu/var/jenkins_home/:/var/jenkins_home/
         #     - /var/lib/boot2docker/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
-
-    # CI Server(master)
-    ci-gandamu:
-        container_name: ci-gandamu
-        hostname: ci-gandamu
-        image: jenkins:2.19.2
-        ports:
-            -  "19088:8080"
-            -  "19050:50000"
-        networks:
-            b0:
-                ipv4_address: 172.18.0.70
-        environment:
-            - "TZ=Asia/Tokyo"
-        #   - "JAVA_OPTS=-Dhudson.footerURL=http://example.com"
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-            - /usr/local/bin/docker:/usr/bin/docker
-        volumes_from:
-            - gandamu
 
     # Web Server
     9zilla-lamp:
@@ -108,7 +92,7 @@ services:
         privileged: true
         command: /sbin/init
 
-    # DB Server
+    # RDBMS Server
     my-gandamu:
         container_name: my-gandamu
         hostname: my-gandamu
@@ -131,6 +115,39 @@ services:
         ### example - boot2docker
         #     - /var/lib/boot2docker/containers/my-gandamu/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
         #     - /var/lib/boot2docker/containers/my-gandamu/etc/mysql/conf.d/:/etc/mysql/conf.d/
+        volumes_from:
+            - gandamu
+
+    # Key-Value Store
+    redis-gandamu:
+        container_name: redis-gandamu
+        hostname: redis-gandamu
+        image: redis:3.2.5
+        networks:
+            b0:
+                ipv4_address: 172.18.0.51
+        environment:
+            - "TZ=Asia/Tokyo"
+        volumes_from:
+            - gandamu
+
+    # CI Server(master)
+    ci-gandamu:
+        container_name: ci-gandamu
+        hostname: ci-gandamu
+        image: jenkins:2.19.2
+        ports:
+            -  "19088:8080"
+            -  "19050:50000"
+        networks:
+            b0:
+                ipv4_address: 172.18.0.70
+        environment:
+            - "TZ=Asia/Tokyo"
+        #   - "JAVA_OPTS=-Dhudson.footerURL=http://example.com"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /usr/local/bin/docker:/usr/bin/docker
         volumes_from:
             - gandamu
 
