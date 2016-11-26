@@ -9,7 +9,7 @@ RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config
 RUN systemctl enable ssh
 RUN apt-get install -y make gcc g++
-RUN apt-get install -y vim git tig unzip tree sed bash-completion dbus sudo openssl curl wget expect cron
+RUN apt-get install -y vim git tig bzip2 unzip tree sed bash-completion dbus sudo openssl curl wget expect cron
 RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog htop inetutils-traceroute iftop bmon iptraf nload slurm sl toilet lolcat
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
