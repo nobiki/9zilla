@@ -68,7 +68,7 @@ services:
         #     - /var/lib/boot2docker/containers/gandamu/var/jenkins_home/:/var/jenkins_home/
         #     - /var/lib/boot2docker/containers/gandamu/etc/pki/tls/certs/:/etc/pki/tls/certs/
 
-    # Web Server
+    # LAMP Web Server
     9zilla-lamp:
         container_name: 9zilla-lamp
         hostname: 9zilla-lamp
@@ -86,6 +86,30 @@ services:
         #   - C:\containers\9zilla-lamp\etc\apache2\sites-available\:/etc/apache2/sites-available/
         ### example - boot2docker
         #   - /var/lib/boot2docker/containers/9zilla-lamp/etc/apache2/sites-available/:/etc/apache2/sites-available/
+        volumes_from:
+            - gandamu
+
+        privileged: true
+        command: /sbin/init
+
+    # Nginx Web Server
+    9zilla-nginx-rails:
+        container_name: 9zilla-nginx-rails
+        hostname: 9zilla-nginx-rails
+        image: nobiki/9zilla-nginx-rails:latest
+        networks:
+            b0:
+                ipv4_address: 172.18.0.21
+        environment:
+            - "TZ=Asia/Tokyo"
+        volumes:
+            - /var/containers/9zilla-nginx-rails/etc/nginx/conf.d/:/etc/nginx/conf.d/
+        ### example - Docker for Mac
+        #   - /private/var/containers/9zilla-nginx-rails/etc/nginx/conf.d/:/etc/nginx/conf.d/
+        ### example - Docker for Windows
+        #   - C:\containers\9zilla-nginx-rails\etc\nginx\conf.d\:/etc/nginx/conf.d/
+        ### example - boot2docker
+        #   - /var/lib/boot2docker/containers/9zilla-nginx-rails/etc/nginx/conf.d/:/etc/nginx/conf.d/
         volumes_from:
             - gandamu
 
