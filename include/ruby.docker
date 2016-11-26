@@ -1,0 +1,7 @@
+// required packages for pyenv
+RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+
+// rbenv(anyenv)
+RUN anyenv install rbenv
+
+RUN chown -R $username:$username $ANYENV_HOME
