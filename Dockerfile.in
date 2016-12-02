@@ -9,6 +9,7 @@ RUN apt-get update
 #include "./include/ssh.docker"
 #include "./include/plain.docker"
 #include "./include/anyenv.docker"
+#include "./include/gcloud.docker"
 #include "./include/ngrok.docker"
 #include "./include/php.docker"
 #include "./include/python.docker"
