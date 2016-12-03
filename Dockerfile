@@ -60,6 +60,10 @@ RUN echo 'eval "$(anyenv init -)"' >> /home/$username/.bash_profile
 ENV PATH $ANYENV_HOME/bin:$PATH
 RUN mkdir $ANYENV_ENV
 RUN chown -R $username:$username $ANYENV_HOME
+ENV CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+RUN echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
+RUN curl "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | apt-key add -
+RUN apt-get update && apt-get install -y google-cloud-sdk
 ADD archives/ngrok /usr/local/bin/
 RUN chmod +x /usr/local/bin/ngrok
 RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-oauth
@@ -71,6 +75,11 @@ RUN anyenv install pyenv
 ENV PATH $ANYENV_ENV/pyenv/bin:$ANYENV_ENV/pyenv/shims:$PATH
 ENV PYENV_ROOT $ANYENV_ENV/pyenv
 RUN git clone "https://github.com/yyuu/pyenv-virtualenv" $PYENV_ROOT/plugins/pyenv-virtualenv
+RUN chown -R $username:$username $ANYENV_HOME
+RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+RUN anyenv install rbenv
+ENV PATH $ANYENV_ENV/rbenv/bin:$ANYENV_ENV/rbenv/shims:$PATH
+ENV RBENV_ROOT $ANYENV_ENV/rbenv
 RUN chown -R $username:$username $ANYENV_HOME
 RUN anyenv install ndenv
 RUN chown -R $username:$username $ANYENV_HOME

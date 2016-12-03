@@ -13,6 +13,7 @@ RUN apt-get update
 #include "./include/ngrok.docker"
 #include "./include/php.docker"
 #include "./include/python.docker"
+#include "./include/ruby.docker"
 #include "./include/node.docker"
 #include "./include/nginx.docker"
 #include "./include/mariadb-client.docker"

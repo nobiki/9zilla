@@ -92,7 +92,7 @@ services:
         privileged: true
         command: /sbin/init
 
-    # Nginx Web Server
+    # Nginx Web Server (rails)
     9zilla-nginx-rails:
         container_name: 9zilla-nginx-rails
         hostname: 9zilla-nginx-rails
@@ -110,6 +110,34 @@ services:
         #   - C:\containers\9zilla-nginx-rails\etc\nginx\conf.d\:/etc/nginx/conf.d/
         ### example - boot2docker
         #   - /var/lib/boot2docker/containers/9zilla-nginx-rails/etc/nginx/conf.d/:/etc/nginx/conf.d/
+        volumes_from:
+            - gandamu
+
+        privileged: true
+        command: /sbin/init
+
+    # Nginx Web Server (python)
+    9zilla-nginx-python:
+        container_name: 9zilla-nginx-python
+        hostname: 9zilla-nginx-python
+        image: nobiki/9zilla-nginx-python:latest
+        networks:
+            b0:
+                ipv4_address: 172.18.0.22
+        environment:
+            - "TZ=Asia/Tokyo"
+        volumes:
+            - /var/containers/9zilla-nginx-python/etc/nginx/conf.d/:/etc/nginx/conf.d/
+            - /var/containers/9zilla-nginx-python/etc/uwsgi/vassals/:/etc/uwsgi/vassals/
+        ### example - Docker for Mac
+        #   - /private/var/containers/9zilla-nginx-python/etc/nginx/conf.d/:/etc/nginx/conf.d/
+        #   - /private/var/containers/9zilla-nginx-python/etc/uwsgi/vassals/:/etc/uwsgi/vassals/
+        ### example - Docker for Windows
+        #   - C:\containers\9zilla-nginx-python\etc\nginx\conf.d\:/etc/nginx/conf.d/
+        #   - C:\containers\9zilla-nginx-python\etc\uwsgi\vassals\:/etc/uwsgi/vassals/
+        ### example - boot2docker
+        #   - /var/lib/boot2docker/containers/9zilla-nginx-python/etc/nginx/conf.d/:/etc/nginx/conf.d/
+        #   - /var/lib/boot2docker/containers/9zilla-nginx-python/etc/uwsgi/vassals/:/etc/uwsgi/vassals/
         volumes_from:
             - gandamu
 
