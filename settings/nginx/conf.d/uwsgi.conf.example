@@ -1,0 +1,10 @@
+server {
+    listen       80;
+    server_name  hello.example.local;
+
+    location / {
+        include uwsgi_params;
+        uwsgi_pass unix:/etc/uwsgi/sockets/example.sock;
+    }
+}
+

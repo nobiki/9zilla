@@ -1,0 +1,23 @@
+[uwsgi]
+# application setting
+base = /var/virtualdomains/example.com/
+wsgi-file = hello/wsgi.py
+
+# virtualenv setting
+chdir = %(base)
+
+# socket setting
+socket = /etc/uwsgi/sockets/%n.sock
+chmod-socket = 666
+uid = www-data
+gid = www-data
+
+logto = /var/log/uwsgi/%n.log
+
+touch-reload = %(base)/.uwsgi_reload
+touch-logreopen = %(base)/.logreopen_trigger
+
+processes = 4
+threads = 2
+vacuum = true
+
