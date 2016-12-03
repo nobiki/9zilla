@@ -85,7 +85,6 @@ RUN anyenv install ndenv
 RUN chown -R $username:$username $ANYENV_HOME
 RUN apt-get install -y nginx
 ADD settings/nginx/nginx.conf /etc/nginx/nginx.conf
-ADD settings/nginx/conf.d/example.conf /etc/nginx/conf.d/example.conf
 RUN apt-get install -y mariadb-client libmysqlclient-dev
 RUN apt-get install -y xvfb
 RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb
