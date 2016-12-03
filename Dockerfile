@@ -60,10 +60,6 @@ RUN echo 'eval "$(anyenv init -)"' >> /home/$username/.bash_profile
 ENV PATH $ANYENV_HOME/bin:$PATH
 RUN mkdir $ANYENV_ENV
 RUN chown -R $username:$username $ANYENV_HOME
-ENV CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-RUN echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
-RUN curl "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | apt-key add -
-RUN apt-get update && apt-get install -y google-cloud-sdk
 ADD archives/ngrok /usr/local/bin/
 RUN chmod +x /usr/local/bin/ngrok
 RUN apt-get install -y xvfb

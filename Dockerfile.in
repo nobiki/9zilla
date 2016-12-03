@@ -10,8 +10,6 @@ RUN apt-get update
 
 #include "./include/plain.docker"
 #include "./include/anyenv.docker"
-
-#include "./include/gcloud.docker"
 #include "./include/ngrok.docker"
 
 #include "./include/xvfb.docker"

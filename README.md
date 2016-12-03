@@ -1,5 +1,5 @@
 # 9zilla
-Debian Workspace - PHP, Python, NodeJS, Nginx, Selenium, Behat, Xvfb
+Debian Workspace - Nginx, Selenium, Behat, Xvfb
 
 #### Caution
 this container is development use only. do not use in production environment.
