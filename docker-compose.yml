@@ -92,24 +92,24 @@ services:
         privileged: true
         command: /sbin/init
 
-    # Nginx Web Server (rails)
-    9zilla-nginx-rails:
-        container_name: 9zilla-nginx-rails
-        hostname: 9zilla-nginx-rails
-        image: nobiki/9zilla-nginx-rails:latest
+    # Nginx Web Server (ruby)
+    9zilla-nginx-ruby:
+        container_name: 9zilla-nginx-ruby
+        hostname: 9zilla-nginx-ruby
+        image: nobiki/9zilla-nginx-ruby:latest
         networks:
             b0:
                 ipv4_address: 172.18.0.21
         environment:
             - "TZ=Asia/Tokyo"
         volumes:
-            - /var/containers/9zilla-nginx-rails/etc/nginx/conf.d/:/etc/nginx/conf.d/
+            - /var/containers/9zilla-nginx-ruby/etc/nginx/conf.d/:/etc/nginx/conf.d/
         ### example - Docker for Mac
-        #   - /private/var/containers/9zilla-nginx-rails/etc/nginx/conf.d/:/etc/nginx/conf.d/
+        #   - /private/var/containers/9zilla-nginx-ruby/etc/nginx/conf.d/:/etc/nginx/conf.d/
         ### example - Docker for Windows
-        #   - C:\containers\9zilla-nginx-rails\etc\nginx\conf.d\:/etc/nginx/conf.d/
+        #   - C:\containers\9zilla-nginx-ruby\etc\nginx\conf.d\:/etc/nginx/conf.d/
         ### example - boot2docker
-        #   - /var/lib/boot2docker/containers/9zilla-nginx-rails/etc/nginx/conf.d/:/etc/nginx/conf.d/
+        #   - /var/lib/boot2docker/containers/9zilla-nginx-ruby/etc/nginx/conf.d/:/etc/nginx/conf.d/
         volumes_from:
             - gandamu
 

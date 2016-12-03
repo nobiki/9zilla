@@ -8,7 +8,14 @@ RUN apt-get update
 
 #include "./include/plain.docker"
 #include "./include/anyenv.docker"
+
+#include "./include/xvfb.docker"
+#include "./include/browser.docker"
+#include "./include/selenium-behat.docker"
+
+#include "./include/node.docker"
+
 #include "./include/ruby.docker"
 #include "./include/nginx.docker"
-#include "./include/node.docker"
+
 #include "./include/mariadb-client.docker"
