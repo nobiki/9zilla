@@ -2,9 +2,9 @@ server {
     listen       80;
     server_name  hello.example.local;
 
-    location / {
+    location / { try_files $uri @uwsgi; }
+    location @uwsgi {
         include uwsgi_params;
         uwsgi_pass unix:/etc/uwsgi/sockets/example.sock;
     }
 }
-
