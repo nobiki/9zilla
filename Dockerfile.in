@@ -11,6 +11,7 @@ RUN apt-get update
 #include "./include/plain.docker"
 #include "./include/anyenv.docker"
 #include "./include/ngrok.docker"
+#include "./include/heroku.docker"
 
 #include "./include/xvfb.docker"
 #include "./include/browser.docker"

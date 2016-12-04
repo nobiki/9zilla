@@ -62,6 +62,7 @@ RUN mkdir $ANYENV_ENV
 RUN chown -R $username:$username $ANYENV_HOME
 ADD archives/ngrok /usr/local/bin/
 RUN chmod +x /usr/local/bin/ngrok
+wget -O- "https://toolbelt.heroku.com/install-ubuntu.sh" | sh
 RUN apt-get install -y xvfb
 RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb
 RUN chmod +x /usr/local/bin/selenium-xvfb
