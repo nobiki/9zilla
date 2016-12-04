@@ -1,10 +1,13 @@
 [uwsgi]
 # application setting
-base = /var/virtualdomains/example.com/
+base = /var/virtualdomains/pythonapp.9zilla.local/mysite/
 wsgi-file = hello/wsgi.py
 
 # virtualenv setting
 chdir = %(base)
+virtualenv = /home/9zilla/.anyenv/envs/pyenv/versions/pythonapp/
+# home = /home/9zilla/.anyenv/envs/pyenv/versions/pythonapp/
+# pythonpath = %(base)
 
 # socket setting
 socket = /etc/uwsgi/sockets/%n.sock
@@ -15,9 +18,7 @@ gid = www-data
 logto = /var/log/uwsgi/%n.log
 
 touch-reload = %(base)/.uwsgi_reload
-touch-logreopen = %(base)/.logreopen_trigger
 
 processes = 4
 threads = 2
 vacuum = true
-
