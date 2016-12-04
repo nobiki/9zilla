@@ -15,7 +15,8 @@ chmod-socket = 666
 uid = www-data
 gid = www-data
 
-logto = /var/log/uwsgi/%n.log
+#logto = /var/log/uwsgi/%n.log
+logto = %(base)/uwsgi.log
 
 touch-reload = %(base)/.uwsgi_reload
 
