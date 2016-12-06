@@ -1,11 +1,9 @@
 FROM debian:jessie
 MAINTAINER Naoaki Obiki
 
-ARG username="9zilla"
-ARG password="9zilla"
-
 RUN apt-get update
 
+#include "./include/useradd.docker"
 #include "./include/plain.docker"
 
 #include "./include/xvfb.docker"
