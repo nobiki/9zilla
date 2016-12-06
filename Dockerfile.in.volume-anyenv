@@ -5,7 +5,7 @@ ARG username="9zilla"
 ARG password="9zilla"
 
 RUN apt-get update
+RUN apt-get install git
 
-#include "./include/plain.docker"
 #include "./include/anyenv.docker"
 
