@@ -1,6 +1,8 @@
 ARG username="9zilla"
 ARG password="9zilla"
 
+RUN apt-get install -y sudo
+
 // useradd
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd

@@ -3,6 +3,7 @@ MAINTAINER Naoaki Obiki
 RUN apt-get update
 ARG username="9zilla"
 ARG password="9zilla"
+RUN apt-get install -y sudo
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
 RUN echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username
@@ -17,7 +18,7 @@ RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config
 RUN systemctl enable ssh
 RUN apt-get install -y make gcc g++ lsb-release
-RUN apt-get install -y vim git tig bzip2 unzip tree sed bash-completion dbus sudo openssl curl wget expect cron
+RUN apt-get install -y vim git tig bzip2 unzip tree sed bash-completion dbus openssl curl wget expect cron
 RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog htop inetutils-traceroute iftop bmon iptraf nload slurm sl toilet lolcat
 RUN locale-gen ja_JP.UTF-8
 RUN localedef -f UTF-8 -i ja_JP ja_JP
