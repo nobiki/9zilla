@@ -1,8 +1,1 @@
 RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
-
-// // rbenv(anyenv)
-// RUN anyenv install rbenv
-// ENV PATH $ANYENV_ENV/rbenv/bin:$ANYENV_ENV/rbenv/shims:$PATH
-// ENV RBENV_ROOT $ANYENV_ENV/rbenv
-//
-// RUN chown -R $username:$username $ANYENV_HOME
