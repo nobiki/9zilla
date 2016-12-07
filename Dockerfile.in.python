@@ -13,6 +13,7 @@ RUN apt-get update
 #include "./include/nginx.docker"
 
 #include "./include/python.docker"
+#include "./include/uwsgi.docker"
 
 #include "./include/node.docker"
 #include "./include/mariadb-client.docker"
