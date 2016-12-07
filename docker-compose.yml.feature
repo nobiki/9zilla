@@ -56,7 +56,7 @@ services:
         #   - C:\containers\9zilla-volume-anyenv\home\9zilla\.anyenv\envs\:/home/9zilla/.anyenv/envs/
         ### example - boot2docker
         #   - /var/lib/boot2docker/containers/9zilla-volume-anyenv/home/9zilla/.anyenv/envs/:/home/9zilla/.anyenv/envs/
-		command: /bin/chown -R 1000:1000 /home/9zilla/.anyenv/envs/
+        command: /bin/chown -R 1000:1000 /home/9zilla/.anyenv/envs/
 
     9zilla-volume-contents:
         container_name: 9zilla-volume-contents
