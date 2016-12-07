@@ -65,6 +65,7 @@ RUN apt-get install -y firefox-esr
 RUN apt-get install -y php5 php5-curl php5-imagick imagemagick
 RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
+RUN mkdir -p /home/$username/.composer
 RUN chown $username:$username /home/$username/.composer
 RUN apt-get install -y default-jdk
 ADD archives/selenium-server-standalone.jar /usr/local/bin/
@@ -85,5 +86,6 @@ RUN systemctl enable nginx
 RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-oauth
 RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
+RUN mkdir -p /home/$username/.composer
 RUN chown $username:$username /home/$username/.composer
 RUN apt-get install -y mariadb-client libmysqlclient-dev
