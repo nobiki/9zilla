@@ -92,4 +92,6 @@ RUN systemctl disable apache2
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
 RUN mkdir -p /home/$username/.composer
 RUN chown $username:$username /home/$username/.composer
+RUN apt-get install -y vim-nox pkg-config libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libfreetype6-dev
+RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 RUN apt-get install -y mariadb-client libmysqlclient-dev

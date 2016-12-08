@@ -14,5 +14,4 @@ RUN apt-get update
 
 #include "./include/ruby.docker"
 
-#include "./include/node.docker"
 #include "./include/mariadb-client.docker"

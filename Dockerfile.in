@@ -15,6 +15,7 @@ RUN apt-get update
 #include "./include/nginx.docker"
 
 #include "./include/php.docker"
-#include "./include/node.docker"
+#include "./include/python.docker"
+#include "./include/ruby.docker"
 
 #include "./include/mariadb-client.docker"
