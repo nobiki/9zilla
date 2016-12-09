@@ -11,7 +11,7 @@ this container is development use only. do not use in production environment.
 $ docker-compose up -d
 ```
 
-* When it's necessary, a build is done after the default user is changed. `Dockerfile`
+* sudo user `Dockerfile`
 
 ``` sh
 ARG username="9zilla"
