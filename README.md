@@ -8,6 +8,7 @@ this container is development use only. do not use in production environment.
 * It corresponds to `docker-compose`
 
 ``` sh
+$ make update
 $ docker-compose up -d
 ```
 
