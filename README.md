@@ -9,6 +9,7 @@ this container is development use only. do not use in production environment.
 
 ``` sh
 $ make update
+# [docker-compose.yml is customized for your PC]
 $ docker-compose up -d
 ```
 
