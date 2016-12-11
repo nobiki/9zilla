@@ -18,7 +18,7 @@ RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config
 RUN systemctl enable ssh
 RUN apt-get install -y make gcc g++ lsb-release
-RUN apt-get install -y vim git tig bzip2 unzip tree sed bash-completion dbus openssl curl wget expect cron direnv
+RUN apt-get install -y vim git tig bzip2 unzip tree sed bash-completion dbus openssl curl wget expect cron
 RUN apt-get install -y vim dnsutils procps siege pandoc locales dialog htop inetutils-traceroute iftop bmon iptraf nload slurm sl toilet lolcat
 RUN locale-gen ja_JP.UTF-8
 RUN localedef -f UTF-8 -i ja_JP ja_JP
@@ -56,6 +56,8 @@ RUN echo 'if [ -e $HOME/.anyenv/bin ]; then' >> /home/$username/.bash_profile
 RUN echo '  export PATH="$HOME/.anyenv/bin:$PATH"' >> /home/$username/.bash_profile
 RUN echo '  eval "$(anyenv init -)"' >> /home/$username/.bash_profile
 RUN echo 'fi' >> /home/$username/.bash_profile
+RUN apt-get install -y direnv
+RUN echo 'eval "$(direnv hook bash)"' >> /home/$username/.bash_profile
 ADD archives/ngrok /usr/local/bin/
 RUN chmod +x /usr/local/bin/ngrok
 RUN apt-get install -y xvfb
