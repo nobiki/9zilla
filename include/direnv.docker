@@ -1,0 +1,4 @@
+// direnv
+RUN apt-get install -y direnv
+RUN echo 'eval "$(direnv hook bash)"' >> /home/$username/.bash_profile
+

@@ -56,7 +56,3 @@ RUN echo '  export PATH="$HOME/.anyenv/bin:$PATH"' >> /home/$username/.bash_prof
 RUN echo '  eval "$(anyenv init -)"' >> /home/$username/.bash_profile
 RUN echo 'fi' >> /home/$username/.bash_profile
 
-// direnv
-RUN apt-get install -y direnv
-RUN echo 'eval "$(direnv hook bash)"' >> /home/$username/.bash_profile
-
