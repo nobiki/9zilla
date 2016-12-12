@@ -14,6 +14,8 @@ RUN mkdir /var/log/uwsgi/
 RUN chmod 755 /var/log/uwsgi/
 RUN chown www-data:www-data /var/log/uwsgi/
 
+ADD settings/uwsgi/uwsgi_setup.sh /
+
 // // uwsgi (Installation of anyenv is needed first.)
 // RUN bash -c "cd /home/$username/ && exec $SHELL -l"
 // RUN mkdir /etc/uwsgi/
