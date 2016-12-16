@@ -6,19 +6,22 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/useradd.docker"
 #include "./include/ssh.docker"
 #include "./include/base.docker"
-#include "./include/direnv.docker"
+#include "./include/peco.docker"
+#include "./include/enhancd.docker"
 #include "./include/ngrok.docker"
+
+#include "./include/direnv.docker"
+
+#include "./include/nginx.docker"
+#include "./include/mariadb-client.docker"
+
+#include "./include/php.docker"
+#include "./include/composer.docker"
+#include "./include/python.docker"
+#include "./include/ruby.docker"
 
 #include "./include/xvfb.docker"
 #include "./include/browser.docker"
 #include "./include/selenium-behat.docker"
-
-#include "./include/nginx.docker"
-
-#include "./include/php.docker"
-#include "./include/python.docker"
-#include "./include/ruby.docker"
-
-#include "./include/mariadb-client.docker"
 
 CMD ["/sbin/init"]

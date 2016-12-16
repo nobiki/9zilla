@@ -44,9 +44,22 @@ RUN echo 'if [ -e $HOME/.anyenv/bin ]; then' >> /home/$username/.bash_profile
 RUN echo '  export PATH="$HOME/.anyenv/bin:$PATH"' >> /home/$username/.bash_profile
 RUN echo '  eval "$(anyenv init -)"' >> /home/$username/.bash_profile
 RUN echo 'fi' >> /home/$username/.bash_profile
+ADD archives/peco_linux_amd64/peco /usr/local/bin/ && chmod +x /usr/local/bin/peco
+RUN git clone "https://github.com/b4b4r07/enhancd.git" /usr/local/src/enhancd && chmod +x /usr/local/src/enhancd/init.sh
+RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
+ADD archives/ngrok /usr/local/bin/ && chmod +x /usr/local/bin/ngrok
 RUN apt-get install -y direnv
 RUN echo 'eval "$(direnv hook bash)"' >> /home/$username/.bash_profile
-ADD archives/ngrok /usr/local/bin/ && chmod +x /usr/local/bin/ngrok
+RUN apt-get install -y nginx
+RUN chmod 755 /var/log/nginx/
+RUN systemctl enable nginx
+RUN apt-get install -y mariadb-client libmysqlclient-dev
+RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-oauth
+RUN systemctl disable apache2
+RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
+RUN mkdir -p /home/$username/.composer && chown $username:$username /home/$username/.composer
+RUN apt-get install -y vim-nox pkg-config libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libfreetype6-dev
+RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 RUN apt-get install -y xvfb
 RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb
 RUN chmod +x /usr/local/bin/selenium-xvfb
@@ -65,12 +78,4 @@ ADD settings/behat/behat.yml /usr/local/lib/behat/
 RUN chown -R $username:$username /usr/local/lib/behat/
 RUN ln -s /usr/local/lib/behat/bin/behat /usr/local/bin/behat
 RUN ln -s /usr/local/lib/behat/ /home/$username/ci/behat
-RUN apt-get install -y nginx
-RUN chmod 755 /var/log/nginx/
-RUN systemctl enable nginx
-RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-oauth
-RUN systemctl disable apache2
-RUN apt-get install -y vim-nox pkg-config libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libfreetype6-dev
-RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
-RUN apt-get install -y mariadb-client libmysqlclient-dev
 CMD ["/sbin/init"]
