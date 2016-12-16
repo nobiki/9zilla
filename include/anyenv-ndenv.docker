@@ -1,6 +1,6 @@
 // ndenv
-RUN anyenv install ndenv
+RUN anyenv install ndenv && chown -R $username:$username $ANYENV_HOME
+
 ENV PATH $ANYENV_ENV/ndenv/bin:$ANYENV_ENV/ndenv/shims:$PATH
 ENV NDENV_ROOT $ANYENV_ENV/ndenv
 
-RUN chown -R $username:$username $ANYENV_HOME

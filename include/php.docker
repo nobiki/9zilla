@@ -4,8 +4,3 @@ RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5
 // disable apache2
 RUN systemctl disable apache2
 
-// composer
-RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
-RUN mkdir -p /home/$username/.composer
-RUN chown $username:$username /home/$username/.composer
-
