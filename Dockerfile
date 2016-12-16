@@ -44,10 +44,12 @@ RUN echo 'if [ -e $HOME/.anyenv/bin ]; then' >> /home/$username/.bash_profile
 RUN echo '  export PATH="$HOME/.anyenv/bin:$PATH"' >> /home/$username/.bash_profile
 RUN echo '  eval "$(anyenv init -)"' >> /home/$username/.bash_profile
 RUN echo 'fi' >> /home/$username/.bash_profile
-ADD archives/peco_linux_amd64/peco /usr/local/bin/ && chmod +x /usr/local/bin/peco
+ADD archives/peco_linux_amd64/peco /usr/local/bin/
+RUN chmod +x /usr/local/bin/peco
 RUN git clone "https://github.com/b4b4r07/enhancd.git" /usr/local/src/enhancd && chmod +x /usr/local/src/enhancd/init.sh
 RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
-ADD archives/ngrok /usr/local/bin/ && chmod +x /usr/local/bin/ngrok
+ADD archives/ngrok /usr/local/bin/
+RUN chmod +x /usr/local/bin/ngrok
 RUN apt-get install -y direnv
 RUN echo 'eval "$(direnv hook bash)"' >> /home/$username/.bash_profile
 RUN apt-get install -y nginx
