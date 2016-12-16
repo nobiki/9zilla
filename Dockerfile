@@ -18,9 +18,9 @@ RUN locale-gen ja_JP.UTF-8 && localedef -f UTF-8 -i ja_JP ja_JP
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:jp
 ENV LC_ALL ja_JP.UTF-8
-RUN echo "export LANG=ja_JP.UTF-8" >> ~/.bash_profile
-RUN echo "export LANGUAGE=ja_JP:jp" >> ~/.bash_profile
-RUN echo "export LC_ALL=ja_JP.UTF-8" >> ~/.bash_profile
+RUN echo "export LANG=ja_JP.UTF-8" >> /home/$username/.bash_profile
+RUN echo "export LANGUAGE=ja_JP:jp" >> /home/$username/.bash_profile
+RUN echo "export LC_ALL=ja_JP.UTF-8" >> /home/$username/.bash_profile
 RUN cp -p /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 RUN sed -ri "s/^server 0.debian.pool.ntp.org/#server 0.debian.pool.ntp.org/" /etc/chrony/chrony.conf
 RUN sed -ri "s/^server 1.debian.pool.ntp.org/#server 1.debian.pool.ntp.org/" /etc/chrony/chrony.conf
