@@ -18,9 +18,6 @@ RUN locale-gen ja_JP.UTF-8 && localedef -f UTF-8 -i ja_JP ja_JP
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:jp
 ENV LC_ALL ja_JP.UTF-8
-RUN echo "export LANG=ja_JP.UTF-8" >> /home/$username/.bash_profile
-RUN echo "export LANGUAGE=ja_JP:jp" >> /home/$username/.bash_profile
-RUN echo "export LC_ALL=ja_JP.UTF-8" >> /home/$username/.bash_profile
 RUN cp -p /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 RUN sed -ri "s/^server 0.debian.pool.ntp.org/#server 0.debian.pool.ntp.org/" /etc/chrony/chrony.conf
 RUN sed -ri "s/^server 1.debian.pool.ntp.org/#server 1.debian.pool.ntp.org/" /etc/chrony/chrony.conf
@@ -38,6 +35,9 @@ RUN sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.bash_profil
 RUN sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.gitconfig /home/$username/.gitconfig
 RUN sudo -u $username mkdir -p /home/$username/.ssh/
 RUN sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.ssh/config /home/$username/.ssh/config
+RUN echo "export LANG=ja_JP.UTF-8" >> /home/$username/.bash_profile
+RUN echo "export LANGUAGE=ja_JP:jp" >> /home/$username/.bash_profile
+RUN echo "export LC_ALL=ja_JP.UTF-8" >> /home/$username/.bash_profile
 RUN curl -o /usr/local/bin/hcat "https://raw.githubusercontent.com/nobiki/bash-hcat/master/hcat" && chmod +x /usr/local/bin/hcat
 RUN curl -o /usr/local/bin/jq "http://stedolan.github.io/jq/download/linux64/jq" && chmod +x /usr/local/bin/jq
 RUN echo 'if [ -e $HOME/.anyenv/bin ]; then' >> /home/$username/.bash_profile
