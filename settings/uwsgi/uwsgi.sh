@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo -i -u "#1000" chown 1000:1000 /home/9zilla/.anyenv/envs/
+chown 1000:1000 /home/9zilla/.anyenv/envs/
 
 sudo -i -u "#1000" bash -c "anyenv install pyenv"
 sudo -i -u "#1000" bash -c "cd /etc/uwsgi/ && pyenv install 3.5.0"
