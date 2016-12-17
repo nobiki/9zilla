@@ -13,6 +13,8 @@ $ make update
 $ docker-compose up -d
 ```
 
+There is a sample of `docker-compose.yml` at my [gist](https://gist.github.com/nobiki/24ecf417fe4292edf01698b5f3642edd).
+
 * sudo user `Dockerfile`
 
 ``` sh
