@@ -41,8 +41,7 @@ $ selenium &
 
 * A file is put here.
 
-configuration file: `/var/containers/`
-
+configuration file: `/var/containers/`  
 document root: `/var/virtualdomains/`
 
 * When using `anyenv`, it can be used by all containers through `9zilla-volume-anyenv`.
