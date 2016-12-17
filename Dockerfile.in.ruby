@@ -13,4 +13,7 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/mariadb-client.docker"
 
 
-CMD ["/sbin/init"]
+COPY bootstrap.sh /
+RUN chmod +x /bootstrap.sh
+
+CMD ["/bootstrap.sh"]
