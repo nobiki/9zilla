@@ -6,7 +6,7 @@ RUN a2enmod rewrite ssl proxy status setenvif unique_id
 
 // disable
 RUN a2dismod userdir
-RUN a2dissite 000-default default-ssl
+//RUN a2dissite 000-default default-ssl
 
 // log
 RUN mkdir -p /var/log/apache2/vhost/ && chmod -R 755 /var/log/apache2/
