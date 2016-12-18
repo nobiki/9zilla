@@ -9,3 +9,15 @@ update:
 
 build: Dockerfile
 	docker build --no-cache -t 9zilla:latest .
+
+up:
+	docker-compose up -d
+
+down:
+	docker-compose down
+
+rmi-none:
+	docker images | awk '/<none/{print $3}' | xargs docker rmi
+
+rmi-9zilla:
+	docker images | awk '/9zilla/{print $3}' | xargs docker rmi
