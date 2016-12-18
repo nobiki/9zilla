@@ -6,3 +6,4 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/useradd.docker"
 #include "./include/anyenv.docker"
 
+CMD ["/bin/chown -R 1000:1000 /home/9zilla/.anyenv/envs/"]
