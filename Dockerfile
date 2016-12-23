@@ -54,6 +54,7 @@ RUN apt-get install -y direnv
 RUN echo 'eval "$(direnv hook bash)"' >> /home/$username/.bash_profile
 RUN apt-get install -y nginx
 RUN chmod 755 /var/log/nginx/
+ADD settings/nginx.nginx.conf /etc/nginx/
 RUN systemctl enable nginx
 RUN apt-get install -y mariadb-client libmysqlclient-dev
 RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-oauth
