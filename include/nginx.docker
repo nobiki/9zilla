@@ -1,5 +1,5 @@
 // nginx
 RUN apt-get install -y nginx
 RUN chmod 755 /var/log/nginx/
-ADD settings/nginx.nginx.conf /etc/nginx/
+ADD settings/nginx/nginx.conf /etc/nginx/
 RUN systemctl enable nginx
