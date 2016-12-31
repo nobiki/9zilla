@@ -1,0 +1,6 @@
+// phpenv
+RUN anyenv install phpenv && chown -R $username:$username $ANYENV_HOME
+
+ENV PATH $ANYENV_ENV/phpenv/bin:$ANYENV_ENV/phpenv/shims:$PATH
+ENV PHPENV_ROOT $ANYENV_ENV/phpenv
+

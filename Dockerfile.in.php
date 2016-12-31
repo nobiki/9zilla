@@ -7,10 +7,10 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/base.docker"
 #include "./include/direnv.docker"
 
-#include "./include/lamp-php.docker"
-#include "./include/composer.docker"
+#include "./include/php.docker"
+#include "./include/php-fpm.docker"
 
-#include "./include/apache2.docker"
+#include "./include/nginx.docker"
 #include "./include/mariadb-client.docker"
 
 COPY bootstrap.sh /

@@ -1,0 +1,6 @@
+RUN mkdir -p /var/run/php-fpm/ && chown www-data.www-data /var/run/php-fpm/
+
+ADD settings/supervisor/conf.d/php-fpm.conf /etc/supervisor/conf.d/
+
+COPY settings/php-fpm/php-fpm.sh /
+RUN chmod +x /php-fpm.sh
