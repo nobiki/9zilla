@@ -50,6 +50,9 @@ RUN git clone "https://github.com/b4b4r07/enhancd.git" /usr/local/src/enhancd &&
 RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
 ADD archives/ngrok /usr/local/bin/
 RUN chmod +x /usr/local/bin/ngrok
+RUN wget "https://dl.eff.org/certbot-auto" -P /usr/local/bin/
+RUN chmod a+x /usr/local/bin/certbot-auto
+RUN /usr/local/bin/certbot-auto --os-packages-only --non-interactive
 RUN apt-get install -y direnv
 RUN echo 'eval "$(direnv hook bash)"' >> /home/$username/.bash_profile
 RUN apt-get install -y nginx

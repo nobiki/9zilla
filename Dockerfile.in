@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/enhancd.docker"
 #include "./include/ngrok.docker"
 
+#include "./include/certbot.docker"
 #include "./include/direnv.docker"
 
 #include "./include/nginx.docker"
