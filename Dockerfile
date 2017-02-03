@@ -62,7 +62,8 @@ RUN systemctl enable nginx
 RUN apt-get install -y mariadb-client libmysqlclient-dev
 RUN apt-get install -y php5 php5-dev php5-cgi php5-cli php5-curl php5-mongo php5-mysql php5-memcache php5-mcrypt mcrypt php5-readline php5-json php5-imagick imagemagick php5-oauth
 RUN systemctl disable apache2
-RUN apt-get install -y re2c bison pkg-config xz-utils libssl-dev libxml2-dev libcurl4-openssl-dev libjpeg62-turbo-dev libpng12-dev libmcrypt-dev libreadline-dev libtidy-dev libxslt1-dev imagemagick autoconf
+RUN apt-get install -y re2c bison pkg-config xz-utils libssl-dev libxml2-dev libcurl4-openssl-dev libjpeg62-turbo-dev libpng12-dev libicu-dev libmcrypt-dev libreadline-dev libtidy-dev libxslt1-dev imagemagick autoconf
+COPY settings/php/default_configure_options /
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
 RUN mkdir -p /home/$username/.composer && chown $username:$username /home/$username/.composer
 RUN apt-get install -y vim-nox pkg-config libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libfreetype6-dev libpcre3 libpcre3-dev
