@@ -21,7 +21,6 @@
 --enable-sysvsem
 --enable-sysvshm
 --enable-shmop
---with-mysql=mysqlnd
 --with-mysqli=mysqlnd
 --with-pdo-mysql=mysqlnd
 --with-pdo-sqlite
@@ -34,3 +33,4 @@
 --with-fpm-group=www-data
 --enable-bcmath
 --enable-phpdbg
+--enable-intl
