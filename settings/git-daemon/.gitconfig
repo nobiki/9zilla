@@ -1,0 +1,6 @@
+[user]
+        name = 9zilla-composer-repository
+        email = 9zilla@example.com
+[daemon]
+        uploadarch = true
+        receivepack = true
