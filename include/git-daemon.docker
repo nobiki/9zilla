@@ -11,7 +11,7 @@ ADD settings/git-daemon/.gitconfig /home/$gituser
 RUN chown -R $gituser:$gituser /home/$gituser
 
 // repository
-RUN mkdir -p /repos/git && chown -R $gituser:$gituser /repos/git/
-
-RUN echo "git daemon --reuseaddr --export-all --enable=receive-pack --base-path=/repos/git/ --user=git --listen=0.0.0.0 --port=9418 /repos/git/" > /git-daemon.sh && chmod +x /git-daemon.sh
+RUN echo "mkdir -p /repos/git && chown -R $gituser:$gituser /repos/git/" >> /git-daemon.sh
+RUN echo "git daemon --reuseaddr --export-all --enable=receive-pack --base-path=/repos/git/ --user=git --listen=0.0.0.0 --port=9418 /repos/git/" >> /git-daemon.sh
+RUN chmod +x /git-daemon.sh
 
