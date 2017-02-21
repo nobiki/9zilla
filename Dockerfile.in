@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/nginx.docker"
 #include "./include/mariadb-client.docker"
 
-#include "./include/lamp-php.docker"
+#include "./include/apt-php.docker"
 #include "./include/php.docker"
 #include "./include/composer.docker"
 #include "./include/python.docker"
