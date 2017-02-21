@@ -1,5 +1,5 @@
 [user]
-        name = 9zilla-composer-repository
+        name = 9zilla
         email = 9zilla@example.com
 [daemon]
         uploadarch = true
