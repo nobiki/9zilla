@@ -1,9 +1,0 @@
-{
-  "name": "9zilla Composer Repository",
-  "homepage": "http://satis.9zilla-repos-composer.local",
-  "repositories": [
-    { "type": "vcs", "url": "https://github.com/nobiki/9zilla.git" },
-    { "type": "vcs", "url": "https://github.com/nobiki/9zilla-repos-composer.git" }
-  ],
-  "require-all": true
-}
