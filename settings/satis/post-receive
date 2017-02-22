@@ -1,1 +1,1 @@
-satis build --skip-errors /repos/satis.json /repos/satis/
+sudo -u git satis build --skip-errors /repos/satis.json /repos/satis/
