@@ -1,8 +1,7 @@
 {
   "name": "9zilla Composer Repository",
-  "homepage": "http://satis.9zilla-repos-composer.local",
+  "homepage": "git://satis.9zilla-repos-composer.local",
   "repositories": [
-    { "type": "vcs", "url": "https://github.com/laravel/laravel" },
     { "type": "vcs", "url": "https://github.com/cakephp/cakephp" }
   ],
   "require-all": true
