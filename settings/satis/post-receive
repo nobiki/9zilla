@@ -1,1 +1,1 @@
-satis build --skip-errors /repos/satis.json /repos/satis/
+satis build -vvv --skip-errors /repos/satis.json /repos/satis/

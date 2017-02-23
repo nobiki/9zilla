@@ -2,7 +2,7 @@
   "name": "9zilla Composer Repository",
   "homepage": "git://satis.9zilla-repos-composer.local",
   "repositories": [
-    { "type": "vcs", "url": "https://github.com/cakephp/cakephp" }
+    { "type": "vcs", "url": "/repos/git/hoge.git" }
   ],
   "require-all": true
 }
