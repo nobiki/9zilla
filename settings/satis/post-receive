@@ -1,1 +1,1 @@
-satis build -vvv --skip-errors /repos/satis.json /repos/satis/
+COMPOSER_HOME="/home/git" satis build -vvv --skip-errors /repos/satis.json /repos/satis/
