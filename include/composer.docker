@@ -1,6 +1,6 @@
 // composer
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
-RUN mkdir -p /home/$username/.composer && chown $username:$username /home/$username/.composer
+RUN mkdir -p /home/$username/.composer && chown -R $username:$username /home/$username/.composer
 
-ENV COMPOSER_HOME /home/$username
+ENV COMPOSER_HOME /home/$username/.composer
 
