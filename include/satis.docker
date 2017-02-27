@@ -1,5 +1,6 @@
 // satis
-RUN composer.phar create-project composer/satis:dev-master --keep-vcs --working-dir=/usr/local/lib/
+RUN mkdir /usr/local/lib/satis/ && chown $username:$username /usr/local/lib/satis/
+RUN sudo -u $username composer.phar create-project composer/satis:dev-master --keep-vcs --working-dir=/usr/local/lib/
 
 ADD settings/satis/satis.json.org /usr/local/lib/satis/
 RUN chown -R $username:$username /usr/local/lib/satis/
