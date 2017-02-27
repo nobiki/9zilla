@@ -1,8 +1,8 @@
 {
   "name": "9zilla Composer Repository",
-  "homepage": "git://satis.9zilla-repos-composer.local",
+  "homepage": "http://satis.9zilla-repos-composer.local",
   "repositories": [
-    { "type": "vcs", "url": "/repos/git/hoge.git" }
+    { "type": "vcs", "url": "git://9zilla-repos-composer/hoge.git" }
   ],
   "require-all": true
 }
