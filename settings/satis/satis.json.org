@@ -4,5 +4,8 @@
   "repositories": [
     { "type": "vcs", "url": "git://9zilla-repos-composer/hoge.git" }
   ],
+  "config":{
+      "secure-http":false
+  },
   "require-all": true
 }
