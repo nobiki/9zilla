@@ -1,16 +1,3 @@
-## Purge
-
-If you choose to archive packages as part of your build, over time you can be
-left with useless files. With the `purge` command, you can delete these files.
-
-``` sh
-php bin/satis purge <configuration-file> <output-dir>
-```
-
- > Note: don't do this unless you are certain your projects no longer reference
-    any of these archives in their `composer.lock` files.
-
-
 # 9zilla
 Debian Workspace - Nginx, Selenium, Behat, Xvfb
 
