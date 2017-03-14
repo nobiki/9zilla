@@ -1,7 +1,7 @@
 RUN apt-get install -y \
     make gcc g++ vim tig dbus bash-completion supervisor \
-    bzip2 unzip tree sed pandoc locales dialog \
-    chrony openssl curl wget expect cron \
+    bzip2 unzip p7zip-full tree sed pandoc locales dialog \
+    chrony openssl curl wget mutt msmtp expect cron \
     dnsutils procps siege htop inetutils-traceroute iftop bmon iptraf nload slurm \
     sl toilet lolcat \
     lsb-release
