@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y sudo git
 
 #include "./include/xvfb.docker"
 #include "./include/browser.docker"
-#include "./include/selenium-behat.docker"
+#include "./include/selenium.docker"
+#include "./include/behat.docker"
 
 CMD ["/sbin/init"]

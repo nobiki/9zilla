@@ -21,13 +21,6 @@ ARG username="9zilla"
 ARG password="9zilla"
 ```
 
-Install `behat`
-
-``` sh
-$ cd ~/ci/behat/
-$ composer.phar install
-```
-
 run `Xvfb` on `DISPLAY=:99`
 
 ``` sh
@@ -37,7 +30,7 @@ $ selenium-xvfb
 run `selenium` With chromedriver on `DISPLAY=:99`
 
 ``` sh
-$ selenium &
+$ selenium 1>/dev/null 2>/dev/null &
 ```
 
 A file is put here.
