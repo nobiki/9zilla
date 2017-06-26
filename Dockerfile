@@ -84,6 +84,7 @@ RUN echo "DISPLAY=:99 java -jar /usr/local/bin/selenium-server-standalone.jar -D
 RUN chmod +x /usr/local/bin/selenium
 RUN mkdir /usr/local/lib/selenium
 ADD archives/chromedriver /usr/local/lib/selenium/
+ADD archives/geckodriver /usr/local/lib/selenium/
 RUN mkdir -p /usr/local/lib/behat/
 ADD settings/behat/composer.json /usr/local/lib/behat/
 ADD settings/behat/behat.yml /usr/local/lib/behat/
