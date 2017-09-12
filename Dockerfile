@@ -68,7 +68,7 @@ ADD settings/nginx/nginx.conf /etc/nginx/
 RUN systemctl enable nginx
 RUN apt-get install -y mariadb-client default-libmysqlclient-dev
 RUN apt-get install -y php php-all-dev php-cgi php-cli php-curl php-mbstring mcrypt imagemagick
-RUN apt-get install -y re2c bison pkg-config xz-utils libssl-dev libxml2-dev libcurl4-gnutls-dev libcurl4-openssl-dev libjpeg62-turbo-dev libpng-dev libicu-dev libmcrypt-dev libreadline-dev libtidy-dev libxslt1-dev imagemagick autoconf
+RUN apt-get install -y re2c bison pkg-config xz-utils libssl-dev libxml2-dev libcurl4-gnutls-dev libjpeg62-turbo-dev libpng-dev libicu-dev libmcrypt-dev libreadline-dev libtidy-dev libxslt1-dev imagemagick autoconf
 COPY settings/php/default_configure_options /
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
 RUN mkdir -p /home/$username/.composer && chown -R $username:$username /home/$username/.composer
