@@ -68,12 +68,12 @@ ADD settings/nginx/nginx.conf /etc/nginx/
 RUN systemctl enable nginx
 RUN apt-get install -y mariadb-client default-libmysqlclient-dev
 RUN apt-get install -y php php-all-dev php-cgi php-cli php-curl php-mbstring mcrypt imagemagick
-RUN apt-get install -y re2c bison pkg-config xz-utils libssl-dev libxml2-dev libcurl4-openssl-dev libjpeg62-turbo-dev libpng-dev libicu-dev libmcrypt-dev libreadline-dev libtidy-dev libxslt1-dev imagemagick autoconf
+RUN apt-get install -y re2c bison pkg-config xz-utils libssl-dev libxml2-dev libcurl4-gnutls-dev libcurl4-openssl-dev libjpeg62-turbo-dev libpng-dev libicu-dev libmcrypt-dev libreadline-dev libtidy-dev libxslt1-dev imagemagick autoconf
 COPY settings/php/default_configure_options /
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
 RUN mkdir -p /home/$username/.composer && chown -R $username:$username /home/$username/.composer
 ENV COMPOSER_HOME /home/$username/.composer
-RUN apt-get install -y vim-nox pkg-config libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libfreetype6-dev libpcre3 libpcre3-dev libncurses5 libncurses5-dev libncursesw5
+RUN apt-get install -y vim-nox pkg-config make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libfreetype6-dev llvm libncurses5 libncurses5-dev libncursesw5 libncursesw5-dev xz-utils tk-dev
 RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 RUN apt-get install -y xvfb
 RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb
