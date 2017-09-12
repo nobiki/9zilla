@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Naoaki Obiki
 
 RUN apt-get update && apt-get install -y sudo git
@@ -6,6 +6,10 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/useradd.docker"
 #include "./include/ssh.docker"
 #include "./include/base.docker"
+
+// supervisor
+ADD settings/supervisor/supervisord.conf /etc/supervisord.conf
+
 #include "./include/peco.docker"
 #include "./include/enhancd.docker"
 #include "./include/ngrok.docker"
@@ -27,4 +31,4 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/selenium.docker"
 #include "./include/behat.docker"
 
-CMD ["/sbin/init"]
+CMD ["/usr/bin/supervisord"]

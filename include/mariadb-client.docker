@@ -1,2 +1,2 @@
 // mariadb-client
-RUN apt-get install -y mariadb-client libmysqlclient-dev
+RUN apt-get install -y mariadb-client default-libmysqlclient-dev
