@@ -73,7 +73,7 @@ COPY settings/php/default_configure_options /
 RUN curl -sS "https://getcomposer.org/installer" | php -- --install-dir=/usr/local/bin
 RUN mkdir -p /home/$username/.composer && chown -R $username:$username /home/$username/.composer
 ENV COMPOSER_HOME /home/$username/.composer
-RUN apt-get install -y vim-nox pkg-config libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libfreetype6-dev libpcre3 libpcre3-dev
+RUN apt-get install -y vim-nox pkg-config libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libfreetype6-dev libpcre3 libpcre3-dev libncurses5 libncurses5-dev libncursesw5
 RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 RUN apt-get install -y xvfb
 RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb
