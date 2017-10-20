@@ -46,7 +46,7 @@ RUN ln -s /usr/local/lib/highway/hw /usr/local/bin/hw
 RUN mkdir -p /usr/local/lib/sql-formatter/ && chown $username:$username /usr/local/lib/sql-formatter/
 RUN git clone "https://github.com/jdorn/sql-formatter" /usr/local/lib/sql-formatter
 RUN ln -s /usr/local/lib/sql-formatter/bin/sql-formatter /usr/local/bin/sql-formatter
-RUN git clone "git clone https://github.com/dvorka/hstr.git" /usr/local/lib/hstr
+RUN git clone "https://github.com/dvorka/hstr.git" /usr/local/lib/hstr
 RUN cd /usr/local/lib/hstr/dist && ./1-dist.sh
 RUN cd /usr/local/lib/hstr && ./configure && make && make install
 RUN echo 'if [ -e $HOME/.anyenv/bin ]; then' >> /home/$username/.bash_profile
