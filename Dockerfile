@@ -13,7 +13,7 @@ RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config
 RUN systemctl enable ssh
-RUN apt-get install -y make autoconf automake gcc g++ vim tig dbus bash-completion supervisor bzip2 unzip p7zip-full tree sed silversearcher-ag pandoc locales dialog chrony openssl curl wget ftp ncftp subversion mutt msmtp expect cron dnsutils procps siege htop inetutils-traceroute iftop bmon iptraf nload slurm libncurses5 libncurses5-dev libncursesw5 libncursesw5-dev libreadline-dev pkg-config sl toilet lolcat lsb-release
+RUN apt-get install -y make autoconf automake gcc g++ vim tig dbus bash-completion supervisor bzip2 unzip p7zip-full tree sed silversearcher-ag pandoc locales dialog chrony openssl curl wget ftp ncftp subversion mutt msmtp expect cron dnsutils procps siege htop inetutils-traceroute iftop bmon iptraf nload slurm sl toilet lolcat lsb-release
 RUN locale-gen ja_JP.UTF-8 && localedef -f UTF-8 -i ja_JP ja_JP
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:jp
@@ -46,6 +46,7 @@ RUN ln -s /usr/local/lib/highway/hw /usr/local/bin/hw
 RUN mkdir -p /usr/local/lib/sql-formatter/ && chown $username:$username /usr/local/lib/sql-formatter/
 RUN git clone "https://github.com/jdorn/sql-formatter" /usr/local/lib/sql-formatter
 RUN ln -s /usr/local/lib/sql-formatter/bin/sql-formatter /usr/local/bin/sql-formatter
+RUN apt-get install -y libncurses5 libncurses5-dev libncursesw5 libncursesw5-dev libreadline-dev pkg-config
 RUN git clone "https://github.com/dvorka/hstr.git" /usr/local/lib/hstr
 RUN cd /usr/local/lib/hstr/dist && ./1-dist.sh
 RUN cd /usr/local/lib/hstr && ./configure && make && make install
