@@ -9,9 +9,7 @@ RUN apt-get update && apt-get install -y sudo git
 
 ADD settings/supervisor/supervisord.conf /etc/supervisord.conf
 
-#include "./include/peco.docker"
-#include "./include/enhancd.docker"
-#include "./include/ngrok.docker"
+#include "./include/devtools.docker"
 
 #include "./include/certbot.docker"
 #include "./include/direnv.docker"

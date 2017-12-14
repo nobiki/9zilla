@@ -1,4 +1,0 @@
-// enhancd
-RUN git clone "https://github.com/b4b4r07/enhancd.git" /usr/local/src/enhancd && chmod +x /usr/local/src/enhancd/init.sh
-RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
-

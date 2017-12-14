@@ -1,5 +1,5 @@
 # 9zilla
-Debian Workspace - Nginx, Selenium, Behat, Xvfb
+Debian Workspace
 
 > Caution: this container is development use only. do not use in production environment.
 
@@ -37,7 +37,6 @@ A file is put here.
 
 * server configuration (= volume mount directory): `/var/containers/`  
 * contents: `/var/virtualdomains/`  
-* behat feature: `~/ci/behat/features/`  
 
 When using `anyenv`, it can be used by all containers through `9zilla-volume-anyenv`.
 

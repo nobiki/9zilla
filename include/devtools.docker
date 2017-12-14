@@ -1,0 +1,38 @@
+RUN apt-get install -y \
+    yui-compressor pandoc mutt msmtp \
+    bmon iptraf nload slurm sl toilet lolcat
+
+// hcat
+RUN curl -o /usr/local/bin/hcat "https://raw.githubusercontent.com/nobiki/bash-hcat/master/hcat" && chmod +x /usr/local/bin/hcat
+
+// highway
+RUN git clone "https://github.com/tkengo/highway.git" /usr/local/lib/highway
+RUN /usr/local/lib/highway/tools/build.sh
+RUN ln -s /usr/local/lib/highway/hw /usr/local/bin/hw
+
+// sql-formatter
+RUN mkdir -p /usr/local/lib/sql-formatter/ && chown $username:$username /usr/local/lib/sql-formatter/
+RUN git clone "https://github.com/jdorn/sql-formatter" /usr/local/lib/sql-formatter
+RUN ln -s /usr/local/lib/sql-formatter/bin/sql-formatter /usr/local/bin/sql-formatter
+
+// hstr
+RUN apt-get install -y libncurses5 libncurses5-dev libncursesw5 libncursesw5-dev libreadline-dev pkg-config
+RUN git clone "https://github.com/dvorka/hstr.git" /usr/local/lib/hstr
+RUN cd /usr/local/lib/hstr/dist && ./1-dist.sh
+RUN cd /usr/local/lib/hstr && ./configure && make && make install
+
+// drone-cli
+RUN curl "http://downloads.drone.io/release/linux/amd64/drone.tar.gz" | tar zx && install -t /usr/local/bin drone
+
+// peco
+ADD archives/peco_linux_amd64/peco /usr/local/bin/
+RUN chmod +x /usr/local/bin/peco
+
+// enhancd
+RUN git clone "https://github.com/b4b4r07/enhancd.git" /usr/local/src/enhancd && chmod +x /usr/local/src/enhancd/init.sh
+RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
+
+// ngrok
+ADD archives/ngrok /usr/local/bin/
+RUN chmod +x /usr/local/bin/ngrok
+
