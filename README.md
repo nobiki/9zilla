@@ -1,10 +1,12 @@
 # 9zilla
+
 Debian Workspace
 
 > Caution: this container is development use only. do not use in production environment.
 
 #### Usage
-It corresponds to `docker-compose`
+
+* It corresponds to `docker-compose`
 
 ``` sh
 $ make update
@@ -17,7 +19,7 @@ $ docker-compose up -d
 > This docker-compose.yml is created on the assumption that [Barge](https://github.com/bargees/barge-os) is used for the host.  
 > For other docker hosts please refer to examples.  
 
-* sudo user `Dockerfile`
+* sudo user
 
 ``` sh
 ARG username="9zilla"
