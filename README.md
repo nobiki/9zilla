@@ -6,7 +6,7 @@ Debian Workspace
 
 #### Usage
 
-* It corresponds to `docker-compose`
+It corresponds to `docker-compose`
 
 ``` sh
 $ make update
@@ -19,29 +19,29 @@ $ docker-compose up -d
 > This docker-compose.yml is created on the assumption that [Barge](https://github.com/bargees/barge-os) is used for the host.  
 > For other docker hosts please refer to examples.  
 
-* sudo user
+sudo user
 
 ``` sh
 ARG username="9zilla"
 ARG password="9zilla"
 ```
 
-* run `Xvfb` on `DISPLAY=:99`
+run `Xvfb` on `DISPLAY=:99`
 
 ``` sh
 $ selenium-xvfb
 ```
 
-* run `selenium` With chromedriver on `DISPLAY=:99`
+run `selenium` With chromedriver on `DISPLAY=:99`
 
 ``` sh
 $ selenium 1>/dev/null 2>/dev/null &
 ```
 
-* A file is put here.
+A file is put here.
 
-server configuration (= volume mount directory): `/var/containers/`  
-contents: `/var/virtualdomains/` and `/var/workspace/`  
+> server configuration: `/var/containers/`  
+> contents: `/var/virtualdomains/` and `/var/workspace/`  
 
 When using [anyenv](https://github.com/riywo/anyenv), it can be used by all containers through [9zilla-volume-anyenv](https://github.com/nobiki/9zilla-volume-anyenv) [*](https://7me.oji.0j0.jp/2016/docker-anyenv-volume.html)
 
