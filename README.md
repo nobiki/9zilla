@@ -43,8 +43,8 @@ $ selenium 1>/dev/null 2>/dev/null &
 server configuration (= volume mount directory): `/var/containers/`  
 contents: `/var/virtualdomains/` and `/var/workspace/`  
 
-When using `anyenv`, it can be used by all containers through `9zilla-volume-anyenv`.  
-[anyenv](https://github.com/riywo/anyenv)
+When using [anyenv](https://github.com/riywo/anyenv), it can be used by all containers through [9zilla-volume-anyenv](https://github.com/nobiki/9zilla-volume-anyenv) [[*](https://7me.oji.0j0.jp/2016/docker-anyenv-volume.html)]
+
 
 #### Related projects
 
