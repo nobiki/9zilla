@@ -13,7 +13,10 @@ $ make update
 $ docker-compose up -d
 ```
 
-> There is a sample of `docker-compose.yml` at my [gist](https://gist.github.com/nobiki/24ecf417fe4292edf01698b5f3642edd).
+> There is a sample of `docker-compose.yml` at my gist.
+>  - [9zilla-docker-compose.yml](https://gist.github.com/nobiki/24ecf417fe4292edf01698b5f3642edd).
+>
+> This docker-compose.yml is created on the assumption that Barge is used for the host.
 
 sudo user `Dockerfile`
 
