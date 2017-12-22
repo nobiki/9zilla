@@ -17,26 +17,26 @@ $ docker-compose up -d
 > This docker-compose.yml is created on the assumption that [Barge](https://github.com/bargees/barge-os) is used for the host.  
 > For other docker hosts please refer to examples.  
 
-sudo user `Dockerfile`
+* sudo user `Dockerfile`
 
 ``` sh
 ARG username="9zilla"
 ARG password="9zilla"
 ```
 
-run `Xvfb` on `DISPLAY=:99`
+* run `Xvfb` on `DISPLAY=:99`
 
 ``` sh
 $ selenium-xvfb
 ```
 
-run `selenium` With chromedriver on `DISPLAY=:99`
+* run `selenium` With chromedriver on `DISPLAY=:99`
 
 ``` sh
 $ selenium 1>/dev/null 2>/dev/null &
 ```
 
-A file is put here.
+* A file is put here.
 
 server configuration (= volume mount directory): `/var/containers/`  
 contents: `/var/virtualdomains/` and `/var/workspace/`  
