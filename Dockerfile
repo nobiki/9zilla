@@ -59,6 +59,8 @@ RUN cd /usr/local/lib/hstr && ./configure && make && make install
 RUN curl "http://downloads.drone.io/release/linux/amd64/drone.tar.gz" | tar zx && install -t /usr/local/bin drone
 ADD archives/peco_linux_amd64/peco /usr/local/bin/
 RUN chmod +x /usr/local/bin/peco
+ADD archives/memo_linux_amd64/memo /usr/local/bin/
+RUN chmod +x /usr/local/bin/memo
 RUN git clone "https://github.com/b4b4r07/enhancd.git" /usr/local/src/enhancd && chmod +x /usr/local/src/enhancd/init.sh
 RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
 ADD archives/ngrok /usr/local/bin/
