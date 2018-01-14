@@ -61,6 +61,8 @@ ADD archives/peco_linux_amd64/peco /usr/local/bin/
 RUN chmod +x /usr/local/bin/peco
 ADD archives/memo_linux_amd64/memo /usr/local/bin/
 RUN chmod +x /usr/local/bin/memo
+RUN git clone "https://github.com/soimort/translate-shell" /usr/local/src/translate-shell
+RUN cd /usr/local/src/translate-shell && make && make install
 RUN git clone "https://github.com/b4b4r07/enhancd.git" /usr/local/src/enhancd && chmod +x /usr/local/src/enhancd/init.sh
 RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
 ADD archives/ngrok /usr/local/bin/
