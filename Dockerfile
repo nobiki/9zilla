@@ -19,54 +19,28 @@ ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:jp
 ENV LC_ALL ja_JP.UTF-8
 RUN cp -p /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-RUN sed -ri "s/^server 0.debian.pool.ntp.org/#server 0.debian.pool.ntp.org/" /etc/chrony/chrony.conf
-RUN sed -ri "s/^server 1.debian.pool.ntp.org/#server 1.debian.pool.ntp.org/" /etc/chrony/chrony.conf
-RUN sed -ri "s/^server 2.debian.pool.ntp.org/#server 2.debian.pool.ntp.org/" /etc/chrony/chrony.conf
-RUN sed -ri "s/^server 3.debian.pool.ntp.org/#server 3.debian.pool.ntp.org/" /etc/chrony/chrony.conf
-RUN echo "server ntp0.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
-RUN echo "server ntp1.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
-RUN echo "server ntp2.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf
-RUN echo "allow 172.18/12" >> /etc/chrony/chrony.conf
-RUN systemctl enable chrony
-RUN sudo -u $username mkdir -p /home/$username/gitwork/bitbucket/dotfiles/
-RUN sudo -u $username git clone "https://nobiki@bitbucket.org/nobiki/dotfiles.git" /home/$username/gitwork/bitbucket/dotfiles/
-RUN sudo -u $username cp /etc/bash.bashrc /home/$username/.bashrc
-RUN sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.bash_profile /home/$username/.bash_profile
-RUN sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.gitconfig /home/$username/.gitconfig
-RUN sudo -u $username mkdir -p /home/$username/.ssh/
-RUN sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.ssh/config /home/$username/.ssh/config
-RUN echo "export LANG=ja_JP.UTF-8" >> /home/$username/.bash_profile
-RUN echo "export LANGUAGE=ja_JP:jp" >> /home/$username/.bash_profile
-RUN echo "export LC_ALL=ja_JP.UTF-8" >> /home/$username/.bash_profile
+RUN sed -ri "s/^server 0.debian.pool.ntp.org/#server 0.debian.pool.ntp.org/" /etc/chrony/chrony.conf && sed -ri "s/^server 1.debian.pool.ntp.org/#server 1.debian.pool.ntp.org/" /etc/chrony/chrony.conf && sed -ri "s/^server 2.debian.pool.ntp.org/#server 2.debian.pool.ntp.org/" /etc/chrony/chrony.conf && sed -ri "s/^server 3.debian.pool.ntp.org/#server 3.debian.pool.ntp.org/" /etc/chrony/chrony.conf && echo "server ntp0.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf && echo "server ntp1.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf && echo "server ntp2.jst.mfeed.ad.jp" >> /etc/chrony/chrony.conf && echo "allow 172.18/12" >> /etc/chrony/chrony.conf && systemctl enable chrony
+RUN sudo -u $username mkdir -p /home/$username/gitwork/bitbucket/dotfiles/ && sudo -u $username git clone "https://nobiki@bitbucket.org/nobiki/dotfiles.git" /home/$username/gitwork/bitbucket/dotfiles/ && sudo -u $username cp /etc/bash.bashrc /home/$username/.bashrc && sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.bash_profile /home/$username/.bash_profile && sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.gitconfig /home/$username/.gitconfig && sudo -u $username mkdir -p /home/$username/.ssh/ && sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.ssh/config /home/$username/.ssh/config
+RUN echo "export LANG=ja_JP.UTF-8" >> /home/$username/.bash_profile && echo "export LANGUAGE=ja_JP:jp" >> /home/$username/.bash_profile && echo "export LC_ALL=ja_JP.UTF-8" >> /home/$username/.bash_profile
 RUN curl -o /usr/local/bin/jq "http://stedolan.github.io/jq/download/linux64/jq" && chmod +x /usr/local/bin/jq
-RUN echo 'if [ -e $HOME/.anyenv/bin ]; then' >> /home/$username/.bash_profile
-RUN echo '  export PATH="$HOME/.anyenv/bin:$PATH"' >> /home/$username/.bash_profile
-RUN echo '  eval "$(anyenv init -)"' >> /home/$username/.bash_profile
-RUN echo 'fi' >> /home/$username/.bash_profile
+RUN echo 'if [ -e $HOME/.anyenv/bin ]; then' >> /home/$username/.bash_profile && echo '  export PATH="$HOME/.anyenv/bin:$PATH"' >> /home/$username/.bash_profile && echo '  eval "$(anyenv init -)"' >> /home/$username/.bash_profile && echo 'fi' >> /home/$username/.bash_profile
 ADD settings/supervisor/supervisord.conf /etc/supervisord.conf
 RUN apt-get install -y yui-compressor pandoc mutt msmtp bmon iptraf nload slurm sl toilet lolcat
 RUN curl -o /usr/local/bin/hcat "https://raw.githubusercontent.com/nobiki/bash-hcat/master/hcat" && chmod +x /usr/local/bin/hcat
-RUN git clone "https://github.com/tkengo/highway.git" /usr/local/lib/highway
-RUN /usr/local/lib/highway/tools/build.sh
-RUN ln -s /usr/local/lib/highway/hw /usr/local/bin/hw
-RUN mkdir -p /usr/local/lib/sql-formatter/ && chown $username:$username /usr/local/lib/sql-formatter/
-RUN git clone "https://github.com/jdorn/sql-formatter" /usr/local/lib/sql-formatter
-RUN ln -s /usr/local/lib/sql-formatter/bin/sql-formatter /usr/local/bin/sql-formatter
-RUN apt-get install -y libncurses5 libncurses5-dev libncursesw5 libncursesw5-dev libreadline-dev pkg-config
-RUN git clone "https://github.com/dvorka/hstr.git" /usr/local/lib/hstr
-RUN cd /usr/local/lib/hstr/dist && ./1-dist.sh
-RUN cd /usr/local/lib/hstr && ./configure && make && make install
+RUN git clone "https://github.com/tkengo/highway.git" /usr/local/lib/highway && /usr/local/lib/highway/tools/build.sh && ln -s /usr/local/lib/highway/hw /usr/local/bin/hw
+RUN mkdir -p /usr/local/lib/sql-formatter/ && chown $username:$username /usr/local/lib/sql-formatter/ && git clone "https://github.com/jdorn/sql-formatter" /usr/local/lib/sql-formatter && ln -s /usr/local/lib/sql-formatter/bin/sql-formatter /usr/local/bin/sql-formatter
+RUN apt-get install -y libncurses5 libncurses5-dev libncursesw5 libncursesw5-dev libreadline-dev pkg-config && git clone "https://github.com/dvorka/hstr.git" /usr/local/lib/hstr && cd /usr/local/lib/hstr/dist && ./1-dist.sh && cd /usr/local/lib/hstr && ./configure && make && make install
 RUN curl "http://downloads.drone.io/release/linux/amd64/drone.tar.gz" | tar zx && install -t /usr/local/bin drone
 ADD archives/peco_linux_amd64/peco /usr/local/bin/
 RUN chmod +x /usr/local/bin/peco
 ADD archives/memo_linux_amd64/memo /usr/local/bin/
 RUN chmod +x /usr/local/bin/memo
-RUN git clone "https://github.com/soimort/translate-shell" /usr/local/src/translate-shell
-RUN cd /usr/local/src/translate-shell && make && make install
+RUN git clone "https://github.com/soimort/translate-shell" /usr/local/src/translate-shell && cd /usr/local/src/translate-shell && make && make install
 RUN git clone "https://github.com/b4b4r07/enhancd.git" /usr/local/src/enhancd && chmod +x /usr/local/src/enhancd/init.sh
 RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
 ADD archives/ngrok /usr/local/bin/
 RUN chmod +x /usr/local/bin/ngrok
+RUN wget "https://raw.githubusercontent.com/greymd/tmux-xpanes/master/bin/xpanes" -O /usr/local/bin/xpanes && chmod +x /usr/local/bin/xpanes
 RUN wget "https://dl.eff.org/certbot-auto" -P /usr/local/bin/
 RUN chmod a+x /usr/local/bin/certbot-auto
 RUN /usr/local/bin/certbot-auto --os-packages-only --non-interactive
