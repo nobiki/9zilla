@@ -26,4 +26,4 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/selenium.docker"
 #include "./include/behat.docker"
 
-CMD ["/usr/bin/supervisord"]
+CMD /usr/bin/supervisord -c /etc/supervisor/supervisord.conf

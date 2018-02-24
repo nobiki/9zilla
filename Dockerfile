@@ -77,4 +77,4 @@ ADD settings/behat/behat.yml /usr/local/lib/behat/
 RUN chown -R $username:$username /usr/local/lib/behat/
 RUN ln -s /usr/local/lib/behat/bin/behat /usr/local/bin/behat
 RUN ln -s /usr/local/lib/behat/ /home/$username/ci/behat
-CMD ["/usr/bin/supervisord"]
+CMD /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
