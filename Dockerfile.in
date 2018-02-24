@@ -26,4 +26,7 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/selenium.docker"
 #include "./include/behat.docker"
 
-CMD /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+COPY bootstrap.sh /
+RUN chmod +x /bootstrap.sh
+
+CMD ["/bootstrap.sh"]
