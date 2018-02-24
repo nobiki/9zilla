@@ -12,7 +12,7 @@ RUN apt-get install -y ssh
 RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
 RUN sed -ri "s/^#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config
-RUN systemctl enable ssh
+ADD settings/supervisor/conf.d/sshd.conf /etc/supervisor/conf.d/
 RUN apt-get install -y make autoconf automake gcc g++ vim tig dbus bash-completion supervisor bzip2 unzip pigz p7zip-full tree sed locales dialog chrony openssl curl wget aria2 ftp ncftp subversion expect cron dnsutils procps siege htop inetutils-traceroute iftop screen byobu lsb-release
 RUN locale-gen ja_JP.UTF-8 && localedef -f UTF-8 -i ja_JP ja_JP
 ENV LANG ja_JP.UTF-8
@@ -49,7 +49,7 @@ RUN echo 'eval "$(direnv hook bash)"' >> /home/$username/.bash_profile
 RUN apt-get install -y nginx
 RUN chmod 755 /var/log/nginx/
 ADD settings/nginx/nginx.conf /etc/nginx/
-RUN systemctl enable nginx
+ADD settings/supervisor/conf.d/nginx.conf /etc/supervisor/conf.d/
 RUN apt-get install -y mariadb-client default-libmysqlclient-dev
 RUN apt-get install -y php php-all-dev php-cgi php-cli php-curl php-mbstring mcrypt imagemagick
 RUN apt-get install -y re2c bison pkg-config xz-utils libssl-dev libxml2-dev libcurl4-gnutls-dev libjpeg62-turbo-dev libpng-dev libicu-dev libmcrypt-dev libreadline-dev libtidy-dev libxslt1-dev imagemagick autoconf
