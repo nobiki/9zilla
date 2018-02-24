@@ -43,10 +43,9 @@ A file is put here.
 > server configuration: `/var/containers/`  
 > contents: `/var/virtualdomains/` and `/var/workspace/`  
 
-When using [anyenv](https://github.com/riywo/anyenv), it can be used by all containers through [9zilla-volume-anyenv](https://github.com/nobiki/9zilla-volume-anyenv) [*](https://7me.oji.0j0.jp/2016/docker-anyenv-volume.html)
-
-
 #### Related projects
 
 [For Web Developer](https://github.com/nobiki?utf8=%E2%9C%93&tab=repositories&q=9zilla-nginx&type=&language=)  
 [Local Repository](https://github.com/nobiki?utf8=%E2%9C%93&tab=repositories&q=9zilla-repos&type=&language=)  
+
+[And more](https://hub.docker.com/search/?isAutomated=0&isOfficial=0&page=1&pullCount=0&q=nobiki%2F9zilla&starCount=0)
