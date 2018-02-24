@@ -7,8 +7,6 @@ RUN apt-get update && apt-get install -y sudo git
 #include "./include/ssh.docker"
 #include "./include/base.docker"
 
-ADD settings/supervisor/supervisord.conf /etc/supervisord.conf
-
 #include "./include/devtools.docker"
 
 #include "./include/certbot.docker"
