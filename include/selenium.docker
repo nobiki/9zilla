@@ -2,7 +2,7 @@
 RUN apt-get install -y default-jdk
 ADD archives/selenium-server-standalone.jar /usr/local/bin/
 RUN echo "DISPLAY=:99 java -jar /usr/local/bin/selenium-server-standalone.jar -Dwebdriver.chrome.driver=/usr/local/lib/selenium/chromedriver" > /usr/local/bin/selenium
-RUN chmod +x /usr/local/bin/selenium
-RUN mkdir /usr/local/lib/selenium
+RUN chmod +x /usr/local/bin/selenium \
+ && mkdir /usr/local/lib/selenium
 ADD archives/chromedriver /usr/local/lib/selenium/
 ADD archives/geckodriver /usr/local/lib/selenium/

@@ -3,5 +3,5 @@ RUN mkdir -p /usr/local/lib/behat/
 ADD settings/behat/composer.json /usr/local/lib/behat/
 ADD settings/behat/behat.yml /usr/local/lib/behat/
 RUN chown -R $username:$username /usr/local/lib/behat/
-RUN ln -s /usr/local/lib/behat/bin/behat /usr/local/bin/behat
-RUN ln -s /usr/local/lib/behat/ /home/$username/ci/behat
+RUN ln -s /usr/local/lib/behat/bin/behat /usr/local/bin/behat \
+ && ln -s /usr/local/lib/behat/ /home/$username/ci/behat

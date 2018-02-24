@@ -2,8 +2,8 @@ ARG username="9zilla"
 ARG password="9zilla"
 
 // useradd
-RUN mkdir /home/$username
-RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
-RUN echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username
-RUN mkdir -p /home/$username/ci
-RUN chown -R $username:$username /home/$username
+RUN mkdir /home/$username \
+ && useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd \
+ && echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username \
+ && mkdir -p /home/$username/ci \
+ && chown -R $username:$username /home/$username

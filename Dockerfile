@@ -3,15 +3,9 @@ MAINTAINER Naoaki Obiki
 RUN apt-get update && apt-get install -y sudo git
 ARG username="9zilla"
 ARG password="9zilla"
-RUN mkdir /home/$username
-RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
-RUN echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username
-RUN mkdir -p /home/$username/ci
-RUN chown -R $username:$username /home/$username
+RUN mkdir /home/$username && useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd && echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username && mkdir -p /home/$username/ci && chown -R $username:$username /home/$username
 RUN apt-get install -y ssh
-RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config
-RUN sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config
-RUN sed -ri "s/^#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config
+RUN sed -ri "s/^UsePAM yes/#UsePAM yes/" /etc/ssh/sshd_config && sed -ri "s/^#UsePAM no/UsePAM no/" /etc/ssh/sshd_config && sed -ri "s/^#PasswordAuthentication yes/PasswordAuthentication yes/" /etc/ssh/sshd_config && mkdir -p /var/run/sshd
 ADD settings/supervisor/conf.d/sshd.conf /etc/supervisor/conf.d/
 RUN apt-get install -y make autoconf automake gcc g++ vim tig dbus bash-completion supervisor bzip2 unzip pigz p7zip-full tree sed locales dialog chrony openssl curl wget aria2 ftp ncftp subversion expect cron dnsutils procps siege htop inetutils-traceroute iftop screen byobu lsb-release
 RUN locale-gen ja_JP.UTF-8 && localedef -f UTF-8 -i ja_JP ja_JP
@@ -35,18 +29,13 @@ RUN chmod +x /usr/local/bin/peco
 ADD archives/memo_linux_amd64/memo /usr/local/bin/
 RUN chmod +x /usr/local/bin/memo
 RUN git clone "https://github.com/soimort/translate-shell" /usr/local/src/translate-shell && cd /usr/local/src/translate-shell && make && make install
-RUN git clone "https://github.com/b4b4r07/enhancd.git" /usr/local/src/enhancd && chmod +x /usr/local/src/enhancd/init.sh
-RUN echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
+RUN git clone "https://github.com/b4b4r07/enhancd.git" /usr/local/src/enhancd && chmod +x /usr/local/src/enhancd/init.sh && echo 'source /usr/local/src/enhancd/init.sh' >> /home/$username/.bash_profile
 ADD archives/ngrok /usr/local/bin/
 RUN chmod +x /usr/local/bin/ngrok
 RUN wget "https://raw.githubusercontent.com/greymd/tmux-xpanes/master/bin/xpanes" -O /usr/local/bin/xpanes && chmod +x /usr/local/bin/xpanes
-RUN wget "https://dl.eff.org/certbot-auto" -P /usr/local/bin/
-RUN chmod a+x /usr/local/bin/certbot-auto
-RUN /usr/local/bin/certbot-auto --os-packages-only --non-interactive
-RUN apt-get install -y direnv
-RUN echo 'eval "$(direnv hook bash)"' >> /home/$username/.bash_profile
-RUN apt-get install -y nginx
-RUN chmod 755 /var/log/nginx/
+RUN wget "https://dl.eff.org/certbot-auto" -P /usr/local/bin/ && chmod a+x /usr/local/bin/certbot-auto && /usr/local/bin/certbot-auto --os-packages-only --non-interactive
+RUN apt-get install -y direnv && echo 'eval "$(direnv hook bash)"' >> /home/$username/.bash_profile
+RUN apt-get install -y nginx && chmod 755 /var/log/nginx/
 ADD settings/nginx/nginx.conf /etc/nginx/
 ADD settings/supervisor/conf.d/nginx.conf /etc/supervisor/conf.d/
 RUN apt-get install -y mariadb-client default-libmysqlclient-dev
@@ -59,24 +48,21 @@ ENV COMPOSER_HOME /home/$username/.composer
 RUN apt-get install -y vim-nox pkg-config make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libfreetype6-dev llvm libncurses5 libncurses5-dev libncursesw5 libncursesw5-dev xz-utils tk-dev
 RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 RUN apt-get install -y xvfb
-RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb
-RUN chmod +x /usr/local/bin/selenium-xvfb
+RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb && chmod +x /usr/local/bin/selenium-xvfb
 RUN wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | apt-key add -
 RUN echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list.d/google-chrome.list
 RUN apt-get update && apt-get install -y google-chrome-stable firefox-esr
 RUN apt-get install -y default-jdk
 ADD archives/selenium-server-standalone.jar /usr/local/bin/
 RUN echo "DISPLAY=:99 java -jar /usr/local/bin/selenium-server-standalone.jar -Dwebdriver.chrome.driver=/usr/local/lib/selenium/chromedriver" > /usr/local/bin/selenium
-RUN chmod +x /usr/local/bin/selenium
-RUN mkdir /usr/local/lib/selenium
+RUN chmod +x /usr/local/bin/selenium && mkdir /usr/local/lib/selenium
 ADD archives/chromedriver /usr/local/lib/selenium/
 ADD archives/geckodriver /usr/local/lib/selenium/
 RUN mkdir -p /usr/local/lib/behat/
 ADD settings/behat/composer.json /usr/local/lib/behat/
 ADD settings/behat/behat.yml /usr/local/lib/behat/
 RUN chown -R $username:$username /usr/local/lib/behat/
-RUN ln -s /usr/local/lib/behat/bin/behat /usr/local/bin/behat
-RUN ln -s /usr/local/lib/behat/ /home/$username/ci/behat
+RUN ln -s /usr/local/lib/behat/bin/behat /usr/local/bin/behat && ln -s /usr/local/lib/behat/ /home/$username/ci/behat
 COPY bootstrap.sh /
 RUN chmod +x /bootstrap.sh
 CMD ["/bootstrap.sh"]

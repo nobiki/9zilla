@@ -1,4 +1,4 @@
 // certbot
-RUN wget "https://dl.eff.org/certbot-auto" -P /usr/local/bin/
-RUN chmod a+x /usr/local/bin/certbot-auto
-RUN /usr/local/bin/certbot-auto --os-packages-only --non-interactive
+RUN wget "https://dl.eff.org/certbot-auto" -P /usr/local/bin/ \
+ && chmod a+x /usr/local/bin/certbot-auto \
+ && /usr/local/bin/certbot-auto --os-packages-only --non-interactive

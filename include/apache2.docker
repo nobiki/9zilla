@@ -1,11 +1,9 @@
 // apache2
 RUN apt-get install -y apache2
 
-// enable
-RUN a2enmod rewrite ssl proxy status setenvif unique_id
-
-// disable
-RUN a2dismod userdir
+// enable and disable
+RUN a2enmod rewrite ssl proxy status setenvif unique_id \
+ && a2dismod userdir
 
 // log
 RUN mkdir -p /var/log/apache2/vhost/ && chmod -R 755 /var/log/apache2/

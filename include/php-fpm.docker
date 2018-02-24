@@ -1,7 +1,5 @@
 RUN mkdir -p /var/run/php-fpm/ && chown www-data.www-data /var/run/php-fpm/
-
-RUN mkdir -p /etc/php-fpm/php-fpm.d/
-RUN chown -R $username:$username /etc/php-fpm/
+RUN mkdir -p /etc/php-fpm/php-fpm.d/ && chown -R $username:$username /etc/php-fpm/
 
 ADD settings/supervisor/conf.d/php-fpm.conf /etc/supervisor/conf.d/
 
