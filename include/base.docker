@@ -31,6 +31,7 @@ RUN sudo -u $username mkdir -p /home/$username/gitwork/bitbucket/dotfiles/ \
  && sudo -u $username cp /etc/bash.bashrc /home/$username/.bashrc \
  && sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.bash_profile /home/$username/.bash_profile \
  && sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.gitconfig /home/$username/.gitconfig \
+ && sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.screenrc /home/$username/.screenrc \
  && sudo -u $username mkdir -p /home/$username/.ssh/ \
  && sudo -u $username cp /home/$username/gitwork/bitbucket/dotfiles/.ssh/config /home/$username/.ssh/config
 
