@@ -49,20 +49,6 @@ RUN apt-get install -y vim-nox pkg-config make build-essential libssl-dev zlib1g
 RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 RUN apt-get install -y xvfb
 RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb && chmod +x /usr/local/bin/selenium-xvfb
-RUN wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | apt-key add -
-RUN echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list.d/google-chrome.list
-RUN apt-get update && apt-get install -y google-chrome-stable firefox-esr
-RUN apt-get install -y default-jdk
-ADD archives/selenium-server-standalone.jar /usr/local/bin/
-RUN echo "DISPLAY=:99 java -jar /usr/local/bin/selenium-server-standalone.jar -Dwebdriver.chrome.driver=/usr/local/lib/selenium/chromedriver" > /usr/local/bin/selenium
-RUN chmod +x /usr/local/bin/selenium && mkdir /usr/local/lib/selenium
-ADD archives/chromedriver /usr/local/lib/selenium/
-ADD archives/geckodriver /usr/local/lib/selenium/
-RUN mkdir -p /usr/local/lib/behat/
-ADD settings/behat/composer.json /usr/local/lib/behat/
-ADD settings/behat/behat.yml /usr/local/lib/behat/
-RUN chown -R $username:$username /usr/local/lib/behat/
-RUN ln -s /usr/local/lib/behat/bin/behat /usr/local/bin/behat && ln -s /usr/local/lib/behat/ /home/$username/ci/behat
 COPY bootstrap.sh /
 RUN chmod +x /bootstrap.sh
 CMD ["/bootstrap.sh"]
