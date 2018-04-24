@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y sudo git systemd
 #include "./include/base.docker"
 
 #include "./include/apt-python.docker"
+#include "./include/robotframework.docker"
+
 #include "./include/xvfb.docker"
 #include "./include/selenium.docker"
 #include "./include/browser.docker"
