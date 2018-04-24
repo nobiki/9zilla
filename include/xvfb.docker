@@ -1,4 +1,6 @@
 // xvfb
+ENV DISPLAY :99
+
 RUN apt-get install -y xvfb
-RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb \
+RUN echo "Xvfb $DISPLAY -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb \
  && chmod +x /usr/local/bin/selenium-xvfb
