@@ -1,4 +1,4 @@
-RUN echo "robotframework==3.0.2" > /requirements.txt
+RUN echo "robotframework==3.0.2" > /requirements.txt \
  && echo "robotframework-selenium2library==3.0.0" >> /requirements.txt
 
 RUN pip3 install -r /requirements.txt
