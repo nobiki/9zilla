@@ -1,0 +1,2 @@
+// postgresql-client(psql)
+RUN apt-get install -y postgresql-client

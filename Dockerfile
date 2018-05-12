@@ -37,6 +37,7 @@ RUN apt-get install -y nginx && chmod 755 /var/log/nginx/
 ADD settings/nginx/nginx.conf /etc/nginx/
 ADD settings/supervisor/conf.d/nginx.conf /etc/supervisor/conf.d/
 RUN apt-get install -y mariadb-client default-libmysqlclient-dev
+RUN apt-get install -y postgresql-client
 RUN apt-get install -y php php-all-dev php-cgi php-cli php-curl php-mbstring mcrypt imagemagick
 RUN apt-get install -y re2c bison pkg-config xz-utils libssl-dev libxml2-dev libcurl4-gnutls-dev libjpeg62-turbo-dev libpng-dev libicu-dev libmcrypt-dev libreadline-dev libtidy-dev libxslt1-dev imagemagick autoconf
 COPY settings/php/default_configure_options /
@@ -45,8 +46,9 @@ RUN mkdir -p /home/$username/.composer && chown -R $username:$username /home/$us
 ENV COMPOSER_HOME /home/$username/.composer
 RUN apt-get install -y vim-nox pkg-config make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libfreetype6-dev llvm libncurses5 libncurses5-dev libncursesw5 libncursesw5-dev xz-utils tk-dev
 RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+ENV DISPLAY :99
 RUN apt-get install -y xvfb
-RUN echo "Xvfb :99 -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb && chmod +x /usr/local/bin/selenium-xvfb
+RUN echo "Xvfb $DISPLAY -screen 0 1920x1200x24 > /dev/null &" > /usr/local/bin/selenium-xvfb && chmod +x /usr/local/bin/selenium-xvfb
 COPY bootstrap.sh /
 RUN chmod +x /bootstrap.sh
 CMD ["/bootstrap.sh"]

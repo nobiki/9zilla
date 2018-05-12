@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y sudo git
 
 #include "./include/nginx.docker"
 #include "./include/mariadb-client.docker"
+#include "./include/postgres-client.docker"
 
 #include "./include/apt-php.docker"
 #include "./include/php.docker"
