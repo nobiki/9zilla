@@ -1,12 +1,12 @@
 RUN apt-get install -y language-pack-ja language-pack-gnome-ja language-pack-ja-base language-pack-gnome-ja-base locales
 
-RUN locale-gen ja_JP.UTF-8 \
- && localedef -f UTF-8 -i ja_JP ja_JP \
- && update-locale LANG=ja_JP.UTF-8 \
- && update-locale LANGUAGE="ja_JP:ja" \
- && update-locale LC_ALL=ja_JP.UTF-8 \
- && timedatectl set-timezone Asia/Tokyo \
- && source /etc/default/locale
+// RUN locale-gen ja_JP.UTF-8 \
+//  && localedef -f UTF-8 -i ja_JP ja_JP \
+//  && update-locale LANG=ja_JP.UTF-8 \
+//  && update-locale LANGUAGE="ja_JP:ja" \
+//  && update-locale LC_ALL=ja_JP.UTF-8 \
+//  && timedatectl set-timezone Asia/Tokyo \
+//  && source /etc/default/locale
 
 RUN echo 'XKBMODEL="pc105"' > /etc/default/keyboard \
  && echo 'XKBLAYOUT="jp"' >> /etc/default/keyboard \
