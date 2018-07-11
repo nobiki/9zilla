@@ -1,4 +1,4 @@
 // vnc
 RUN apt-get install -y x11vnc xvfb tightvncserver
-RUN mkdir /home/$username/.vnc
-RUN x11vnc -storepasswd secret /home/$username/.vnc/passwd
+RUN mkdir /root/.vnc
+RUN x11vnc -storepasswd secret /root/.vnc/passwd
