@@ -1,0 +1,25 @@
+RUN apt-get install -y language-pack-ja language-pack-gnome-ja language-pack-ja-base language-pack-gnome-ja-base locales
+
+RUN locale-gen ja_JP.UTF-8 \
+ && localedef -f UTF-8 -i ja_JP ja_JP \
+ && update-locale LANG=ja_JP.UTF-8 \
+ && update-locale LANGUAGE="ja_JP:ja" \
+ && update-locale LC_ALL=ja_JP.UTF-8 \
+ && timedatectl set-timezone Asia/Tokyo \
+ && source /etc/default/locale
+
+RUN tee /etc/default/keyboard << EOF
+XKBMODEL="pc105"
+XKBLAYOUT="jp"
+XKBVARIANT="OADG109A"
+XKBOPTIONS=""
+
+BACKSPACE="guess"
+EOF
+
+RUN apt-get install -y xubuntu-desktop ibus-mozc meld mirage gawk
+
+RUN wget -qO - "https://github.com/nana-4/materia-theme/archive/master.tar.gz" | tar xz && cd materia-theme-master && ./install.sh
+RUN wget "https://github.com/mzyy94/RictyDiminished-for-Powerline/raw/master/vim-powerline-fontpatched/RictyDiminished-Regular-Powerline.ttf" -O /usr/local/share/fonts/RictyDiminished-Regular-Powerline.ttf
+RUN wget "https://github.com/mzyy94/RictyDiminished-for-Powerline/raw/master/vim-powerline-fontpatched/RictyDiminished-Bold-Powerline.ttf" -O /usr/local/share/fonts/RictyDiminished-Bold-Powerline.ttf
+RUN wget "https://github.com/mzyy94/RictyDiminished-for-Powerline/raw/master/vim-powerline-fontpatched/RictyDiminished-Oblique-Powerline.ttf" -O /usr/local/share/fonts/RictyDiminished-Oblique-Powerline.ttf

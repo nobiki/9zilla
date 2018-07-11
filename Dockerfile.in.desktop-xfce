@@ -1,0 +1,24 @@
+FROM ubuntu:bionic
+MAINTAINER Naoaki Obiki
+
+RUN apt-get update && apt-get install -y sudo git
+
+#include "./include/useradd.docker"
+#include "./include/ssh.docker"
+
+#include "./include/xubuntu.docker"
+#include "./include/base.docker"
+#include "./include/devtools.docker"
+
+#include "./include/certbot.docker"
+#include "./include/direnv.docker"
+
+#include "./include/nginx.docker"
+#include "./include/mariadb-client.docker"
+#include "./include/postgres-client.docker"
+
+
+COPY bootstrap.sh /
+RUN chmod +x /bootstrap.sh
+
+CMD ["/bootstrap.sh"]
