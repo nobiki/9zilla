@@ -8,14 +8,12 @@ RUN locale-gen ja_JP.UTF-8 \
  && timedatectl set-timezone Asia/Tokyo \
  && source /etc/default/locale
 
-RUN tee /etc/default/keyboard << EOF
-XKBMODEL="pc105"
-XKBLAYOUT="jp"
-XKBVARIANT="OADG109A"
-XKBOPTIONS=""
-
-BACKSPACE="guess"
-EOF
+RUN echo 'XKBMODEL="pc105"' > /etc/default/keyboard \
+ && echo 'XKBLAYOUT="jp"' >> /etc/default/keyboard \
+ && echo 'XKBVARIANT="OADG109A"' >> /etc/default/keyboard \
+ && echo 'XKBOPTIONS=""' >> /etc/default/keyboard \
+ && echo '' >> /etc/default/keyboard \
+ && echo 'BACKSPACE="guess"' >> /etc/default/keyboard
 
 RUN apt-get install -y xubuntu-desktop ibus-mozc meld mirage gawk
 
